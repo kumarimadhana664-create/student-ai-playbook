@@ -1,0 +1,17 @@
+{
+  "bookTitle": "The Student AI Side Hustle Playbook",
+  "subtitle": "Turn free AI tools into freelance skills, digital services and your first online income.",
+  "author": "ReadNovaHub",
+  "price": 299,
+  "currency": "INR",
+  "currencySymbol": "₹",
+  "discountPercent": 50,
+  "originalPrice": 599,
+  "stripePublicKey": "",
+  "razorpayKeyId": "rzp_test_placeholder",
+  "upiId": "readnovahub@upi",
+  "paymentMode": "razorpay",
+  "rating": "4.9",
+  "reviewsCount": 420,
+  "pagesCount": 25
+}

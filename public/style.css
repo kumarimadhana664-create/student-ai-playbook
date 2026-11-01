@@ -1,0 +1,249 @@
+/* ==========================================================================
+   ADVANCED BESPOKE STYLING & ANIMATIONS
+   Handcrafted design system with micro-interactions & 3D physics
+   ========================================================================== */
+
+/* Modern Dot Grid Background */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 3D BOOK COVER & PARALLAX ENGINE */
+.book-container {
+  perspective: 1400px;
+  width: 290px;
+  height: 420px;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .book-container {
+    width: 330px;
+    height: 480px;
+  }
+}
+
+.book-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  /* Controlled dynamically by JS mouse coordinates with fallback */
+  transform: rotateY(var(--book-ry, -24deg)) rotateX(var(--book-rx, 8deg)) rotateZ(var(--book-rz, -2deg));
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.book-container.resting .book-3d {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px 14px 14px 4px;
+  transform: translateZ(16px);
+  box-shadow: 
+    -3px 0 10px rgba(0, 0, 0, 0.5),
+    12px 18px 35px rgba(0, 0, 0, 0.75),
+    0 0 50px rgba(99, 102, 241, 0.25);
+  overflow: hidden;
+}
+
+/* Dynamic Light Sheen across Book Cover on cursor movement */
+.book-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--sheen-angle, 125deg),
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  transition: opacity 0.3s ease;
+}
+
+.book-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 100%;
+  transform: translateX(-16px) rotateY(-90deg);
+  border-radius: 4px 0 0 4px;
+  box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Realistic Ground Shadow with Dynamic Angle */
+.book-shadow {
+  position: absolute;
+  bottom: -35px;
+  left: 5%;
+  width: 90%;
+  height: 38px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(12px);
+  transform: rotateX(80deg) translateZ(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* SHIMMER EFFECT FOR BUTTONS */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: shimmer 4s infinite linear;
+  pointer-events: none;
+}
+
+/* SCROLL REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* REVENUE CALCULATOR SLIDER */
+input[type="range"].custom-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #1e293b;
+  height: 8px;
+  border-radius: 6px;
+  outline: none;
+}
+
+input[type="range"].custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: 3px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"].custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #4f46e5;
+}
+
+input[type="range"].custom-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: 3px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+}
+
+/* LIVE SOCIAL PROOF TOAST */
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-exit {
+  animation: toastSlideOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* MODAL ENTRANCES */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-in {
+  animation: modalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* SIGNATURE FONT ACCENT */
+.font-handwriting {
+  font-family: 'Caveat', cursive, sans-serif;
+}
