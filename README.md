@@ -16,7 +16,7 @@ A modern, high-converting eBook landing page with automated payment verification
    ```
 3. Open your browser at:
    ```
-   http://localhost:3000
+   https://student-ai-playbook.vercel.app/
    ```
 
 ---
