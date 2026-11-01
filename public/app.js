@@ -421,6 +421,7 @@ async function handlePaymentSubmit(event) {
 
   const name = document.getElementById('cust-name').value;
   const email = document.getElementById('cust-email').value;
+  const phone = document.getElementById('cust-phone')?.value || '9876543210';
   const payBtn = document.getElementById('pay-button');
   const selectedMethod = document.querySelector('input[name="pay-method"]:checked')?.value || 'razorpay';
 
@@ -431,7 +432,7 @@ async function handlePaymentSubmit(event) {
     const orderRes = await fetch('/api/create-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, name })
+      body: JSON.stringify({ email, name, phone })
     });
     const orderData = await orderRes.json();
 
@@ -446,7 +447,8 @@ async function handlePaymentSubmit(event) {
         image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
         prefill: {
           name: name,
-          email: email
+          email: email,
+          contact: phone
         },
         theme: {
           color: "#4f46e5"
