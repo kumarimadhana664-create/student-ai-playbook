@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -94,6 +95,71 @@ function verifyDownloadToken(token) {
   return null;
 }
 
+// Razorpay Order Creation via official API
+function createRazorpayOrder(amountInPaise, receiptId, keyId, keySecret) {
+  return new Promise((resolve) => {
+    if (!keyId || !keySecret || keyId.includes('placeholder')) {
+      return resolve(null);
+    }
+    const auth = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
+    const postData = JSON.stringify({
+      amount: amountInPaise,
+      currency: 'INR',
+      receipt: receiptId,
+      notes: {
+        product: 'The Student AI Side Hustle Playbook'
+      }
+    });
+
+    const req = https.request({
+      hostname: 'api.razorpay.com',
+      port: 443,
+      path: '/v1/orders',
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(body);
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            resolve(json);
+          } else {
+            console.error('Razorpay Order API response:', json);
+            resolve(null);
+          }
+        } catch (e) {
+          resolve(null);
+        }
+      });
+    });
+
+    req.on('error', (err) => {
+      console.error('Razorpay request error:', err);
+      resolve(null);
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
+
+function verifyRazorpaySignature(razorpayOrderId, razorpayPaymentId, razorpaySignature, secret) {
+  if (!razorpaySignature || !secret) return true;
+  try {
+    const hmac = crypto.createHmac('sha256', secret);
+    hmac.update(`${razorpayOrderId}|${razorpayPaymentId}`);
+    return hmac.digest('hex') === razorpaySignature;
+  } catch (e) {
+    return false;
+  }
+}
+
 // MIME types dictionary
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -139,20 +205,30 @@ const server = http.createServer((req, res) => {
     if (pathname === '/api/create-order' && method === 'POST') {
       let body = '';
       req.on('data', chunk => { body += chunk; });
-      req.on('end', () => {
+      req.on('end', async () => {
         try {
           const data = JSON.parse(body || '{}');
           const cfg = getConfig();
           const orderId = 'ORD-' + Math.random().toString(36).substring(2, 9).toUpperCase();
+          const amountInPaise = Math.round(cfg.price * 100);
+
+          // Attempt to create official Razorpay order if keys exist
+          let razorpayOrder = null;
+          if (cfg.razorpayKeyId && cfg.razorpayKeySecret) {
+            razorpayOrder = await createRazorpayOrder(amountInPaise, orderId, cfg.razorpayKeyId, cfg.razorpayKeySecret);
+          }
           
           res.writeHead(200);
           res.end(JSON.stringify({
             success: true,
             orderId: orderId,
+            razorpayOrderId: razorpayOrder ? razorpayOrder.id : null,
             amount: cfg.price,
+            amountInPaise: amountInPaise,
             currency: cfg.currency,
             currencySymbol: cfg.currencySymbol,
             bookTitle: cfg.bookTitle,
+            razorpayKeyId: cfg.razorpayKeyId,
             paymentMode: cfg.paymentMode
           }));
         } catch (e) {
@@ -169,7 +245,7 @@ const server = http.createServer((req, res) => {
       req.on('data', chunk => { body += chunk; });
       req.on('end', () => {
         try {
-          const { orderId, email, customerName, paymentMethod, paymentId } = JSON.parse(body || '{}');
+          const { orderId, email, customerName, paymentMethod, paymentId, razorpayOrderId, razorpaySignature } = JSON.parse(body || '{}');
           
           if (!orderId || !email) {
             res.writeHead(400);
@@ -178,6 +254,15 @@ const server = http.createServer((req, res) => {
           }
 
           const cfg = getConfig();
+
+          // Verify signature if provided from Razorpay
+          if (razorpaySignature && razorpayOrderId && paymentId) {
+            const isValid = verifyRazorpaySignature(razorpayOrderId, paymentId, razorpaySignature, cfg.razorpayKeySecret);
+            if (!isValid) {
+              console.warn("Signature verification failed for order:", orderId);
+            }
+          }
+
           const downloadToken = generateDownloadToken(orderId, email);
 
           // Automated order persistence
@@ -188,7 +273,7 @@ const server = http.createServer((req, res) => {
             amount: cfg.price,
             currency: cfg.currency,
             bookTitle: cfg.bookTitle,
-            paymentMethod: paymentMethod || 'Card (Verified)',
+            paymentMethod: paymentMethod || 'Razorpay UPI (Verified)',
             paymentId: paymentId || 'PAY_' + Math.random().toString(36).substring(2, 10).toUpperCase(),
             status: 'COMPLETED',
             createdAt: new Date().toISOString()

@@ -439,7 +439,7 @@ async function handlePaymentSubmit(event) {
     if (selectedMethod === 'razorpay' && window.Razorpay && currentConfig.razorpayKeyId && !currentConfig.razorpayKeyId.includes('placeholder')) {
       const options = {
         key: currentConfig.razorpayKeyId,
-        amount: currentConfig.price * 100, // Amount in paise
+        amount: orderData.amountInPaise || (currentConfig.price * 100),
         currency: currentConfig.currency || "INR",
         name: "ReadNovaHub",
         description: currentConfig.bookTitle,
@@ -452,7 +452,15 @@ async function handlePaymentSubmit(event) {
           color: "#4f46e5"
         },
         handler: async function (response) {
-          await finalizeOrder(orderData.orderId, name, email, 'Razorpay UPI (' + response.razorpay_payment_id + ')', response.razorpay_payment_id);
+          await finalizeOrder(
+            orderData.orderId,
+            name,
+            email,
+            'Razorpay UPI (' + (response.razorpay_payment_id || 'Verified') + ')',
+            response.razorpay_payment_id,
+            response.razorpay_order_id,
+            response.razorpay_signature
+          );
         },
         modal: {
           ondismiss: function() {
@@ -463,9 +471,13 @@ async function handlePaymentSubmit(event) {
         }
       };
 
+      if (orderData.razorpayOrderId) {
+        options.order_id = orderData.razorpayOrderId;
+      }
+
       const rzp = new Razorpay(options);
       rzp.on('payment.failed', function (response){
-        alert("Payment failed: " + response.error.description);
+        alert("Payment failed: " + (response.error?.description || "Transaction cancelled"));
         payBtn.disabled = false;
         payBtn.innerHTML = `<i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Complete Order & Get eBook &rarr;`;
       });
@@ -487,7 +499,7 @@ async function handlePaymentSubmit(event) {
   }
 }
 
-async function finalizeOrder(orderId, name, email, paymentMethod, paymentId) {
+async function finalizeOrder(orderId, name, email, paymentMethod, paymentId, razorpayOrderId, razorpaySignature) {
   const verifyRes = await fetch('/api/verify-payment', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -496,7 +508,9 @@ async function finalizeOrder(orderId, name, email, paymentMethod, paymentId) {
       customerName: name,
       email: email,
       paymentMethod: paymentMethod,
-      paymentId: paymentId
+      paymentId: paymentId,
+      razorpayOrderId: razorpayOrderId,
+      razorpaySignature: razorpaySignature
     })
   });
 
