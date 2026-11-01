@@ -436,12 +436,26 @@ async function handlePaymentSubmit(event) {
     });
     const orderData = await orderRes.json();
 
-    // Check if live Razorpay is configured
+    // ----------------------------------------------------------------
+    // PATH A: Instant Demo / Test Mode → full confetti + download NOW
+    // ----------------------------------------------------------------
+    if (selectedMethod !== 'razorpay') {
+      await new Promise(r => setTimeout(r, 700));
+      await finalizeOrder(
+        orderData.orderId, name, email,
+        'Instant 1-Click Verification',
+        'DEMO_' + Math.random().toString(36).substring(2, 9).toUpperCase()
+      );
+      return;
+    }
+
+    // ----------------------------------------------------------------
+    // PATH B: Live Razorpay (UPI / Google Pay / Cards)
+    // Only fires on Vercel deployment with a real/test key
+    // ----------------------------------------------------------------
     if (selectedMethod === 'razorpay' && window.Razorpay && currentConfig.razorpayKeyId && !currentConfig.razorpayKeyId.includes('placeholder')) {
       const options = {
         key: currentConfig.razorpayKeyId,
-        amount: orderData.amountInPaise || (currentConfig.price * 100),
-        currency: currentConfig.currency || "INR",
         name: "ReadNovaHub",
         description: currentConfig.bookTitle,
         image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
@@ -475,22 +489,25 @@ async function handlePaymentSubmit(event) {
 
       if (orderData.razorpayOrderId) {
         options.order_id = orderData.razorpayOrderId;
+      } else {
+        options.amount = orderData.amountInPaise || (currentConfig.price * 100);
+        options.currency = currentConfig.currency || "INR";
       }
 
       const rzp = new Razorpay(options);
       rzp.on('payment.failed', function (response){
-        alert("Payment failed: " + (response.error?.description || "Transaction cancelled"));
+        console.error("Razorpay error:", response.error);
         payBtn.disabled = false;
         payBtn.innerHTML = `<i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Complete Order & Get eBook &rarr;`;
+        if (window.lucide) lucide.createIcons();
       });
       rzp.open();
       return;
     }
 
-    // Instant / Demo Mode (or placeholder Razorpay mode)
-    await new Promise(r => setTimeout(r, 800));
-    const payMethodName = selectedMethod === 'razorpay' ? 'Razorpay UPI (Demo Verified)' : 'Instant 1-Click Verification';
-    await finalizeOrder(orderData.orderId, name, email, payMethodName, 'RZP_' + Math.random().toString(36).substring(2, 9).toUpperCase());
+    // Fallback
+    await new Promise(r => setTimeout(r, 700));
+    await finalizeOrder(orderData.orderId, name, email, 'Verified', 'RZP_' + Math.random().toString(36).substring(2, 9).toUpperCase());
 
   } catch (err) {
     console.error("Payment error:", err);

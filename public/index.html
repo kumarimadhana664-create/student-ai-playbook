@@ -555,29 +555,33 @@
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1.5">Payment Method</label>
             <div class="space-y-2 text-xs">
-              <label class="border border-emerald-500/50 bg-emerald-950/30 p-3 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-emerald-500">
-                <div class="flex items-center gap-2.5">
-                  <input type="radio" name="pay-method" value="razorpay" checked class="text-emerald-500 focus:ring-0">
+
+              <!-- OPTION 1: Instant Demo (default - always works for testing) -->
+              <label class="border-2 border-indigo-500 bg-indigo-950/50 p-3.5 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-indigo-400">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="pay-method" value="test-card" checked class="text-indigo-600 focus:ring-0">
                   <div>
-                    <span class="font-bold text-white block">Razorpay UPI & Cards</span>
-                    <span class="text-[10px] text-emerald-300">Google Pay • PhonePe • Paytm • UPI ID • Cards</span>
+                    <span class="font-bold text-white flex items-center gap-1.5">
+                      <span class="text-amber-400 text-base">⚡</span> Instant 1-Click (Test Mode)
+                    </span>
+                    <span class="text-[11px] text-indigo-300 mt-0.5 block">Triggers confetti + instant PDF download • No payment required</span>
                   </div>
                 </div>
-                <div class="flex items-center gap-1 text-[10px] font-bold text-white bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">
-                  ⚡ Instant
-                </div>
+                <span class="bg-emerald-500 text-[10px] font-extrabold text-black px-2 py-0.5 rounded-full uppercase tracking-wide shrink-0">Try Now</span>
               </label>
 
-              <label class="border border-white/10 bg-slate-950/60 p-2.5 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-white/20">
-                <div class="flex items-center gap-2">
-                  <input type="radio" name="pay-method" value="test-card" class="text-indigo-600 focus:ring-0">
+              <!-- OPTION 2: Razorpay Live (active after Vercel deployment with live key) -->
+              <label class="border border-white/10 bg-slate-950/60 p-3 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-white/20 opacity-70">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="pay-method" value="razorpay" class="text-emerald-500 focus:ring-0">
                   <div>
-                    <span class="font-semibold text-slate-300">Instant Demo Mode</span>
-                    <span class="text-[10px] text-slate-500 block">Test order flow without spending real money</span>
+                    <span class="font-semibold text-slate-200 block">Razorpay — UPI, Google Pay, Cards</span>
+                    <span class="text-[10px] text-slate-400 block mt-0.5">PhonePe • Paytm • Any UPI ID • Visa / Mastercard / RuPay</span>
                   </div>
                 </div>
-                <span class="text-[10px] text-slate-400 font-mono">Test</span>
+                <span class="text-[10px] text-amber-400 font-mono shrink-0 ml-2">🔒 Live deploy</span>
               </label>
+
             </div>
           </div>
 
