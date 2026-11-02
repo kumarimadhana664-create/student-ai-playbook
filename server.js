@@ -450,6 +450,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // ADMIN PANEL route
+  if (pathname === '/admin' || pathname === '/admin.html') {
+    const adminFile = path.join(PUBLIC_DIR, 'admin.html');
+    if (fs.existsSync(adminFile)) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      fs.createReadStream(adminFile).pipe(res);
+    } else {
+      res.writeHead(404); res.end('Admin panel not found');
+    }
+    return;
+  }
+
   // STATIC FILE SERVING
   let safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
   if (safePath === '/' || safePath === '\\') {
