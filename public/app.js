@@ -556,6 +556,11 @@ async function finalizeOrder(orderId, name, email, paymentMethod, paymentId, raz
       });
     }
 
+    // Auto-trigger the PDF download in the browser
+    setTimeout(() => {
+      downloadLink.click();
+    }, 600);
+
     if (window.lucide) lucide.createIcons();
   } else {
     alert("Payment verification issue: " + (verifyData.error || "Please try again."));
