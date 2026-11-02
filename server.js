@@ -6,14 +6,19 @@ const crypto = require('crypto');
 const url = require('url');
 
 const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
+const IS_VERCEL = !!process.env.VERCEL;
+const DATA_DIR = IS_VERCEL ? '/tmp' : path.join(__dirname, 'data');
 const ORDERS_FILE = path.join(DATA_DIR, 'orders.json');
-const CONFIG_FILE = path.join(DATA_DIR, 'config.json');
+const CONFIG_FILE = path.join(__dirname, 'data', 'config.json');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
-// Initialize data directory and files
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+// Initialize data directory if not in read-only environment
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (e) {
+  // read-only env, ignore
 }
 
 // Default store config
@@ -27,7 +32,8 @@ const defaultConfig = {
   discountPercent: 50,
   originalPrice: 599,
   stripePublicKey: "",
-  razorpayKeyId: "",
+  razorpayKeyId: "rzp_test_Tuyxi4LT0APumI",
+  razorpayKeySecret: "YxETXJXHLobCIjENoVNrvPT1",
   upiId: "readnovahub@upi",
   paymentMode: "razorpay", // 'demo', 'razorpay', or 'stripe'
   rating: "4.9",
@@ -47,8 +53,14 @@ function getConfig() {
 }
 
 function saveConfig(cfg) {
-  fs.writeFileSync(CONFIG_FILE, JSON.stringify(cfg, null, 2));
+  try {
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(cfg, null, 2));
+  } catch (err) {
+    console.warn("Could not save config to disk:", err.message);
+  }
 }
+
+let inMemoryOrders = [];
 
 function getOrders() {
   try {
@@ -58,18 +70,21 @@ function getOrders() {
   } catch (err) {
     console.error("Error reading orders:", err);
   }
-  return [];
+  return inMemoryOrders;
 }
 
 function saveOrder(order) {
-  const orders = getOrders();
-  orders.unshift(order);
-  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  inMemoryOrders.unshift(order);
+  try {
+    fs.writeFileSync(ORDERS_FILE, JSON.stringify(inMemoryOrders, null, 2));
+  } catch (err) {
+    console.warn("Could not write orders to disk (read-only environment):", err.message);
+  }
   return order;
 }
 
-// Secret key for secure download tokens
-const SECRET_KEY = crypto.randomBytes(32).toString('hex');
+// Deterministic secret key so download tokens are valid across serverless instances
+const SECRET_KEY = process.env.DOWNLOAD_SECRET || 'readnovahub_master_secret_download_key_2026';
 
 function generateDownloadToken(orderId, email) {
   const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
@@ -307,7 +322,10 @@ const server = http.createServer((req, res) => {
         return;
       }
 
-      const filePath = path.join(PUBLIC_DIR, 'downloads', 'ebook.pdf');
+      let filePath = path.join(PUBLIC_DIR, 'downloads', 'The-Student-AI-Side-Hustle-Playbook.pdf');
+      if (!fs.existsSync(filePath)) {
+        filePath = path.join(PUBLIC_DIR, 'downloads', 'ebook.pdf');
+      }
       if (fs.existsSync(filePath)) {
         const stat = fs.statSync(filePath);
         res.writeHead(200, {
