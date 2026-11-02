@@ -32,8 +32,8 @@ const defaultConfig = {
   discountPercent: 50,
   originalPrice: 599,
   stripePublicKey: "",
-  razorpayKeyId: "rzp_test_Tuyxi4LT0APumI",
-  razorpayKeySecret: "YxETXJXHLobCIjENoVNrvPT1",
+  razorpayKeyId: "rzp_live_TvFbRhljzSOYwF",
+  razorpayKeySecret: "ceG8nhVD05TfdL93lLI4ty9Y",
   upiId: "readnovahub@upi",
   paymentMode: "razorpay", // 'demo', 'razorpay', or 'stripe'
   rating: "4.9",
