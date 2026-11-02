@@ -3,33 +3,16 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["public/**", "data/**"]
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "server.js"
-    },
-    {
-      "src": "/downloads/(.*)",
-      "dest": "public/downloads/$1"
-    },
-    {
-      "src": "/(slide[1-5]\\.jpg)",
-      "dest": "public/$1"
-    },
-    {
-      "src": "/(promo-post-day1\\.jpg)",
-      "dest": "public/$1"
-    },
-    {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg|pdf|woff|woff2|ttf))",
-      "dest": "public/$1"
     },
     {
       "src": "/(.*)",
