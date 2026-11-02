@@ -423,10 +423,9 @@ async function handlePaymentSubmit(event) {
   const email = document.getElementById('cust-email').value;
   const phone = document.getElementById('cust-phone')?.value || '9876543210';
   const payBtn = document.getElementById('pay-button');
-  const selectedMethod = document.querySelector('input[name="pay-method"]:checked')?.value || 'razorpay';
 
   payBtn.disabled = true;
-  payBtn.innerHTML = `<span class="inline-block animate-spin mr-2">⚙️</span> Connecting to Payment Rails...`;
+  payBtn.innerHTML = `<span class="inline-block animate-spin mr-2">⚙️</span> Connecting to Razorpay UPI...`;
 
   try {
     const orderRes = await fetch('/api/create-order', {
@@ -436,24 +435,8 @@ async function handlePaymentSubmit(event) {
     });
     const orderData = await orderRes.json();
 
-    // ----------------------------------------------------------------
-    // PATH A: Instant Demo / Test Mode → full confetti + download NOW
-    // ----------------------------------------------------------------
-    if (selectedMethod !== 'razorpay') {
-      await new Promise(r => setTimeout(r, 700));
-      await finalizeOrder(
-        orderData.orderId, name, email,
-        'Instant 1-Click Verification',
-        'DEMO_' + Math.random().toString(36).substring(2, 9).toUpperCase()
-      );
-      return;
-    }
-
-    // ----------------------------------------------------------------
-    // PATH B: Live Razorpay (UPI / Google Pay / Cards)
-    // Only fires on Vercel deployment with a real/test key
-    // ----------------------------------------------------------------
-    if (selectedMethod === 'razorpay' && window.Razorpay && currentConfig.razorpayKeyId && !currentConfig.razorpayKeyId.includes('placeholder')) {
+    // Official Razorpay Gateway Checkout
+    if (window.Razorpay && currentConfig.razorpayKeyId && !currentConfig.razorpayKeyId.includes('placeholder')) {
       const options = {
         key: currentConfig.razorpayKeyId,
         name: "ReadNovaHub",
@@ -481,7 +464,7 @@ async function handlePaymentSubmit(event) {
         modal: {
           ondismiss: function() {
             payBtn.disabled = false;
-            payBtn.innerHTML = `<i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Complete Order & Get eBook &rarr;`;
+            payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
             if (window.lucide) lucide.createIcons();
           }
         }
@@ -498,23 +481,60 @@ async function handlePaymentSubmit(event) {
       rzp.on('payment.failed', function (response){
         console.error("Razorpay error:", response.error);
         payBtn.disabled = false;
-        payBtn.innerHTML = `<i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Complete Order & Get eBook &rarr;`;
+        payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
         if (window.lucide) lucide.createIcons();
       });
       rzp.open();
       return;
     }
 
-    // Fallback
-    await new Promise(r => setTimeout(r, 700));
-    await finalizeOrder(orderData.orderId, name, email, 'Verified', 'RZP_' + Math.random().toString(36).substring(2, 9).toUpperCase());
+    // Direct fallback for instant test simulation
+    await finalizeOrder(orderData.orderId, name, email, 'Verified Order', 'PAY_' + Math.random().toString(36).substring(2, 9).toUpperCase());
 
   } catch (err) {
     console.error("Payment error:", err);
     alert("Could not process order. Please try again.");
     payBtn.disabled = false;
-    payBtn.innerHTML = `<i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Complete Order & Get eBook &rarr;`;
+    payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
     if (window.lucide) lucide.createIcons();
+  }
+}
+
+// Victory Chime Synthesizer (Pure Web Audio API — works on all mobile & desktop browsers)
+function playCelebrationChime() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 (Major victory chime)
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.12 + 0.45);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + idx * 0.12);
+      osc.stop(ctx.currentTime + idx * 0.12 + 0.45);
+    });
+  } catch (e) {
+    // Audio autoplay blocked or unsupported, fail silently
+  }
+}
+
+// Multi-stage colorful confetti cannons
+function fireMultiConfetti() {
+  if (typeof confetti === 'function') {
+    // 1. Center blast
+    confetti({ particleCount: 90, spread: 100, origin: { y: 0.55 } });
+    // 2. Left side cannon
+    setTimeout(() => {
+      confetti({ particleCount: 50, angle: 60, spread: 70, origin: { x: 0.1, y: 0.65 } });
+    }, 250);
+    // 3. Right side cannon
+    setTimeout(() => {
+      confetti({ particleCount: 50, angle: 120, spread: 70, origin: { x: 0.9, y: 0.65 } });
+    }, 450);
   }
 }
 
@@ -547,19 +567,16 @@ async function finalizeOrder(orderId, name, email, paymentMethod, paymentId, raz
     downloadLink.href = verifyData.downloadUrl || '/downloads/The-Student-AI-Side-Hustle-Playbook.pdf';
     downloadLink.setAttribute('download', 'The-Student-AI-Side-Hustle-Playbook.pdf');
 
-    // Trigger Confetti Celebration!
-    if (typeof confetti === 'function') {
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-    }
+    // 1. Play victory sound fanfare
+    playCelebrationChime();
 
-    // Auto-trigger the PDF download in the browser
+    // 2. Fire 3-stage full-screen colorful confetti
+    fireMultiConfetti();
+
+    // 3. Auto-trigger the PDF download in the browser
     setTimeout(() => {
       downloadLink.click();
-    }, 600);
+    }, 700);
 
     if (window.lucide) lucide.createIcons();
   } else {

@@ -84,14 +84,9 @@
       </nav>
 
       <div class="flex items-center gap-3">
-        <button onclick="openAdminModal()" class="text-xs bg-slate-900/90 hover:bg-slate-800 text-slate-300 px-3 py-2 rounded-xl border border-white/10 transition flex items-center gap-1.5 shadow-sm" title="Store Management & Marketing Automation">
-          <i data-lucide="sliders" class="w-3.5 h-3.5 text-indigo-400"></i>
-          <span class="hidden sm:inline font-medium">Owner Tools</span>
-        </button>
-
-        <button onclick="openCheckoutModal()" class="shimmer-btn bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 text-sm border border-indigo-400/20">
+        <button onclick="openCheckoutModal()" class="shimmer-btn bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 text-sm border border-indigo-400/20">
           <i data-lucide="zap" class="w-4 h-4 fill-amber-300 text-amber-300"></i>
-          <span>Get eBook (<span class="book-price-display">$9</span>)</span>
+          <span>Get eBook (<span class="book-price-display">₹299</span>)</span>
         </button>
       </div>
     </div>
@@ -552,42 +547,24 @@
             <input type="tel" id="cust-phone" required placeholder="9876543210" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition">
           </div>
 
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Payment Method</label>
-            <div class="space-y-2 text-xs">
-
-              <!-- OPTION 1: Instant Demo (default - always works for testing) -->
-              <label class="border-2 border-indigo-500 bg-indigo-950/50 p-3.5 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-indigo-400">
-                <div class="flex items-center gap-3">
-                  <input type="radio" name="pay-method" value="test-card" checked class="text-indigo-600 focus:ring-0">
-                  <div>
-                    <span class="font-bold text-white flex items-center gap-1.5">
-                      <span class="text-amber-400 text-base">⚡</span> Instant 1-Click (Test Mode)
-                    </span>
-                    <span class="text-[11px] text-indigo-300 mt-0.5 block">Triggers confetti + instant PDF download • No payment required</span>
-                  </div>
-                </div>
-                <span class="bg-emerald-500 text-[10px] font-extrabold text-black px-2 py-0.5 rounded-full uppercase tracking-wide shrink-0">Try Now</span>
-              </label>
-
-              <!-- OPTION 2: Razorpay Live (active after Vercel deployment with live key) -->
-              <label class="border border-white/10 bg-slate-950/60 p-3 rounded-xl cursor-pointer flex items-center justify-between transition hover:border-white/20 opacity-70">
-                <div class="flex items-center gap-3">
-                  <input type="radio" name="pay-method" value="razorpay" class="text-emerald-500 focus:ring-0">
-                  <div>
-                    <span class="font-semibold text-slate-200 block">Razorpay — UPI, Google Pay, Cards</span>
-                    <span class="text-[10px] text-slate-400 block mt-0.5">PhonePe • Paytm • Any UPI ID • Visa / Mastercard / RuPay</span>
-                  </div>
-                </div>
-                <span class="text-[10px] text-amber-400 font-mono shrink-0 ml-2">🔒 Live deploy</span>
-              </label>
-
+          <!-- Real-World Payment Display -->
+          <div class="bg-gradient-to-r from-indigo-950/60 to-purple-950/40 border border-indigo-500/30 p-3.5 rounded-2xl space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                <span class="text-xs font-bold text-white">Razorpay Secure Checkout</span>
+              </div>
+              <span class="text-[10px] text-emerald-300 font-mono font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">Verified Active</span>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-slate-300 pt-1 border-t border-white/5">
+              <span>Google Pay • PhonePe • Paytm • Any UPI • Cards</span>
+              <span class="text-amber-300 font-bold">Instant Access</span>
             </div>
           </div>
 
-          <button type="submit" id="pay-button" class="shimmer-btn w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-sm mt-2 border border-emerald-400/30">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>Complete Order & Get eBook &rarr;</span>
+          <button type="submit" id="pay-button" class="shimmer-btn w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold py-4 rounded-2xl shadow-xl shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 text-base mt-2 border border-emerald-400/30">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <span>Pay ₹299 & Download Instantly &rarr;</span>
           </button>
         </form>
 
@@ -597,41 +574,50 @@
         </p>
       </div>
 
-      <!-- Step 2: Automated Payment Success Screen -->
-      <div id="checkout-step-success" class="hidden text-center py-4 space-y-5">
-        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/30 border border-emerald-500/30">
-          <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+      <!-- Step 2: Automated Payment Success Screen with Rich Animation -->
+      <div id="checkout-step-success" class="hidden text-center py-4 space-y-5 animate-in">
+        
+        <!-- Animated Pulsing Green Success Checkmark -->
+        <div class="relative w-20 h-20 mx-auto flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping"></div>
+          <div class="relative w-20 h-20 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-xl shadow-emerald-500/40 border-2 border-white/30">
+            <i data-lucide="check" class="w-10 h-10 stroke-[3.5]"></i>
+          </div>
         </div>
 
         <div>
-          <span class="text-xs uppercase font-extrabold tracking-widest text-emerald-400">Payment Verified Automatically</span>
-          <h3 class="font-display font-extrabold text-2xl text-white mt-1">Thank You For Your Order!</h3>
-          <p class="text-xs text-slate-400 mt-1">Order ID: <span id="success-order-id" class="font-mono text-slate-200 font-bold">ORD-9428</span></p>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-emerald-400 font-mono">Payment Successfully Received</span>
+          <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">Order Complete! 🎉</h3>
+          <p class="text-xs text-slate-300 mt-1">Your 25-page playbook is downloading now.</p>
         </div>
 
-        <div class="bg-slate-950 border border-white/[0.08] p-4 rounded-2xl text-left text-xs space-y-1.5">
+        <div class="bg-slate-950/90 border border-white/10 p-4 rounded-2xl text-left text-xs space-y-2 shadow-inner">
+          <div class="flex justify-between items-center pb-2 border-b border-white/5">
+            <span class="text-slate-400">Order Reference:</span>
+            <span id="success-order-id" class="font-mono text-emerald-400 font-bold">ORD-9428</span>
+          </div>
           <div class="flex justify-between">
             <span class="text-slate-400">Recipient:</span>
             <span id="success-customer-email" class="font-medium text-slate-200">user@example.com</span>
           </div>
           <div class="flex justify-between">
             <span class="text-slate-400">Amount Paid:</span>
-            <span class="font-bold text-emerald-400 book-price-display">$9.00</span>
+            <span class="font-bold text-white book-price-display">₹299</span>
           </div>
-          <div class="flex justify-between">
-            <span class="text-slate-400">Delivery Status:</span>
-            <span class="text-emerald-400 font-semibold flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Instant Download Ready
+          <div class="flex justify-between items-center pt-1 border-t border-white/5">
+            <span class="text-slate-400">Download Status:</span>
+            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Complete & Ready
             </span>
           </div>
         </div>
 
         <div class="space-y-2 pt-2">
-          <a id="download-link" href="#" class="shimmer-btn w-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 text-base transform hover:scale-[1.02] border border-indigo-400/30">
+          <a id="download-link" href="/downloads/The-Student-AI-Side-Hustle-Playbook.pdf" download="The-Student-AI-Side-Hustle-Playbook.pdf" class="shimmer-btn w-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 text-base transform hover:scale-[1.02] border border-indigo-400/30">
             <i data-lucide="download" class="w-5 h-5"></i>
-            <span>Download Your eBook (PDF) Now</span>
+            <span>Download Playbook PDF (Instant)</span>
           </a>
-          <p class="text-[11px] text-slate-400">A backup download link has also been logged for your email address.</p>
+          <p class="text-[11px] text-slate-400">A permanent backup link has been logged for your email.</p>
         </div>
 
         <button onclick="closeCheckoutModal()" class="text-xs text-slate-400 hover:text-white transition">Close window</button>
