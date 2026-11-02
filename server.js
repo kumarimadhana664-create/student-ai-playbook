@@ -300,7 +300,7 @@ const server = http.createServer((req, res) => {
           res.end(JSON.stringify({
             success: true,
             order: newOrder,
-            downloadUrl: `/api/download?token=${downloadToken}`,
+            downloadUrl: `/downloads/The-Student-AI-Side-Hustle-Playbook.pdf`,
             message: `Payment successful! An automated delivery email has been logged for ${email}.`
           }));
         } catch (e) {

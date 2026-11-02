@@ -544,7 +544,8 @@ async function finalizeOrder(orderId, name, email, paymentMethod, paymentId, raz
     document.getElementById('success-customer-email').textContent = email;
     
     const downloadLink = document.getElementById('download-link');
-    downloadLink.href = verifyData.downloadUrl;
+    downloadLink.href = verifyData.downloadUrl || '/downloads/The-Student-AI-Side-Hustle-Playbook.pdf';
+    downloadLink.setAttribute('download', 'The-Student-AI-Side-Hustle-Playbook.pdf');
 
     // Trigger Confetti Celebration!
     if (typeof confetti === 'function') {
