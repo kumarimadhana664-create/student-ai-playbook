@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – ReadNovaHub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0f0f1a; color: #f1f5f9; font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 24px;
+    }
+    .login-box {
+      background: #1e1b4b; border: 1px solid rgba(139,92,246,0.4);
+      border-radius: 20px; padding: 40px; width: 100%; max-width: 380px;
+      box-shadow: 0 0 40px rgba(139,92,246,0.2);
+    }
+    .login-box h1 { font-size: 1.5rem; margin-bottom: 6px; text-align: center; }
+    .login-box p { color: #94a3b8; text-align: center; font-size: 0.85rem; margin-bottom: 28px; }
+    .field label { display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .field input { width: 100%; padding: 12px 14px; background: #0f0f1a; border: 1px solid rgba(139,92,246,0.3); border-radius: 10px; color: #fff; font-size: 0.95rem; margin-bottom: 16px; outline: none; }
+    .field input:focus { border-color: #7c3aed; }
+    .btn-primary { width: 100%; padding: 14px; background: linear-gradient(135deg, #7c3aed, #db2777); border: none; border-radius: 12px; color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .btn-primary:hover { opacity: 0.9; }
+    #login-error { color: #f87171; font-size: 0.85rem; text-align: center; margin-top: 10px; display: none; }
+
+    /* DASHBOARD */
+    #dashboard { display: none; }
+    .topbar { background: #1e1b4b; border-bottom: 1px solid rgba(139,92,246,0.2); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .topbar h2 { font-size: 1.1rem; background: linear-gradient(135deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .topbar button { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #f87171; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+    
+    .main { max-width: 720px; margin: 0 auto; padding: 28px 20px 60px; }
+    
+    .section { background: #1e1b4b; border: 1px solid rgba(139,92,246,0.2); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+    .section h3 { font-size: 1rem; margin-bottom: 18px; color: #a78bfa; display: flex; align-items: center; gap: 8px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:500px){ .form-grid { grid-template-columns: 1fr; } }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field.full { grid-column: 1/-1; }
+    .form-field label { font-size: 0.78rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .form-field input, .form-field textarea {
+      background: #0f0f1a; border: 1px solid rgba(139,92,246,0.25); border-radius: 10px;
+      color: #fff; padding: 10px 14px; font-size: 0.9rem; outline: none; font-family: inherit;
+    }
+    .form-field input:focus, .form-field textarea:focus { border-color: #7c3aed; }
+    .form-field textarea { resize: vertical; min-height: 80px; }
+
+    .save-btn { margin-top: 18px; padding: 12px 28px; background: linear-gradient(135deg, #7c3aed, #db2777); border: none; border-radius: 10px; color: #fff; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
+    .save-btn:hover { opacity: 0.9; }
+    .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .toast { position: fixed; bottom: 24px; right: 24px; background: #166534; color: #bbf7d0; padding: 12px 20px; border-radius: 12px; font-size: 0.9rem; display: none; z-index: 9999; }
+    .toast.error { background: #7f1d1d; color: #fecaca; }
+
+    /* Books list */
+    .book-card { background: #0f0f1a; border: 1px solid rgba(139,92,246,0.15); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .book-card .book-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .book-card .book-info span { font-size: 0.8rem; color: #94a3b8; }
+    .book-card .actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .btn-sm { padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; cursor: pointer; border: none; font-weight: 600; }
+    .btn-edit { background: rgba(139,92,246,0.2); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+    .btn-delete { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+
+    .add-book-btn { width: 100%; padding: 12px; border: 2px dashed rgba(139,92,246,0.35); background: transparent; color: #a78bfa; border-radius: 12px; cursor: pointer; font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
+    .add-book-btn:hover { background: rgba(139,92,246,0.08); }
+
+    .status-badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .status-badge.live { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .status-badge.draft { background: rgba(250,204,21,0.15); color: #facc15; }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #1e1b4b; border: 1px solid rgba(139,92,246,0.3); border-radius: 20px; padding: 28px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+    .modal h3 { margin-bottom: 20px; color: #a78bfa; }
+    .modal-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+    .btn-cancel { padding: 10px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; border-radius: 10px; cursor: pointer; }
+    .btn-save-modal { padding: 10px 20px; background: linear-gradient(135deg, #7c3aed, #db2777); border: none; color: #fff; border-radius: 10px; cursor: pointer; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>🔐 Admin Panel</h1>
+    <p>ReadNovaHub Dashboard</p>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="pwd-input" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()" />
+    </div>
+    <button class="btn-primary" onclick="login()">Sign In</button>
+    <p id="login-error">Wrong password. Try again.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="topbar">
+    <h2>📚 ReadNovaHub Admin</h2>
+    <button onclick="logout()">Sign Out</button>
+  </div>
+  <div class="main">
+
+    <!-- STORE SETTINGS -->
+    <div class="section">
+      <h3>⚙️ Store Settings</h3>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Book Title</label>
+          <input type="text" id="cfg-title" />
+        </div>
+        <div class="form-field">
+          <label>Author Name</label>
+          <input type="text" id="cfg-author" />
+        </div>
+        <div class="form-field">
+          <label>Price (₹)</label>
+          <input type="number" id="cfg-price" />
+        </div>
+        <div class="form-field">
+          <label>Original Price (₹)</label>
+          <input type="number" id="cfg-original" />
+        </div>
+        <div class="form-field">
+          <label>UPI ID</label>
+          <input type="text" id="cfg-upi" />
+        </div>
+        <div class="form-field">
+          <label>Razorpay Key ID</label>
+          <input type="text" id="cfg-rzp-key" />
+        </div>
+        <div class="form-field full">
+          <label>Subtitle / Tagline</label>
+          <textarea id="cfg-subtitle"></textarea>
+        </div>
+      </div>
+      <button class="save-btn" onclick="saveConfig()">💾 Save Settings</button>
+    </div>
+
+    <!-- BOOKS MANAGER -->
+    <div class="section">
+      <h3>📖 Books / Products</h3>
+      <div id="books-list"></div>
+      <button class="add-book-btn" onclick="openAddBook()">+ Add New Book</button>
+    </div>
+
+    <!-- RECENT ORDERS -->
+    <div class="section">
+      <h3>💰 Recent Orders</h3>
+      <div id="orders-list"><p style="color:#64748b;font-size:0.85rem;">Loading orders...</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOOK MODAL -->
+<div class="modal-overlay" id="book-modal">
+  <div class="modal">
+    <h3 id="modal-title">Add New Book</h3>
+    <div class="form-grid">
+      <div class="form-field full">
+        <label>Book Title</label>
+        <input type="text" id="bk-title" placeholder="e.g. The Student AI Side Hustle Playbook" />
+      </div>
+      <div class="form-field">
+        <label>Price (₹)</label>
+        <input type="number" id="bk-price" placeholder="299" />
+      </div>
+      <div class="form-field">
+        <label>Original Price (₹)</label>
+        <input type="number" id="bk-original" placeholder="599" />
+      </div>
+      <div class="form-field full">
+        <label>Description</label>
+        <textarea id="bk-desc" placeholder="Short description of this book..."></textarea>
+      </div>
+      <div class="form-field full">
+        <label>PDF Download URL</label>
+        <input type="text" id="bk-pdf" placeholder="https://... or /downloads/book.pdf" />
+      </div>
+      <div class="form-field">
+        <label>Status</label>
+        <select id="bk-status" style="background:#0f0f1a;border:1px solid rgba(139,92,246,0.25);border-radius:10px;color:#fff;padding:10px 14px;font-size:0.9rem;outline:none;">
+          <option value="live">Live (Visible)</option>
+          <option value="draft">Draft (Hidden)</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save-modal" onclick="saveBook()">Save Book</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── SIMPLE PASSWORD (change this to anything you want) ──
+  const ADMIN_PASSWORD = 'readnova2024';
+
+  let books = JSON.parse(localStorage.getItem('rnh_books') || '[]');
+  let editingIdx = -1;
+
+  function login() {
+    const pwd = document.getElementById('pwd-input').value;
+    if (pwd === ADMIN_PASSWORD) {
+      sessionStorage.setItem('rnh_admin', '1');
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadConfig();
+      renderBooks();
+      loadOrders();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    sessionStorage.removeItem('rnh_admin');
+    location.reload();
+  }
+
+  if (sessionStorage.getItem('rnh_admin')) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadConfig();
+    renderBooks();
+    loadOrders();
+  }
+
+  async function loadConfig() {
+    try {
+      const r = await fetch('/api/config');
+      const cfg = await r.json();
+      document.getElementById('cfg-title').value = cfg.bookTitle || '';
+      document.getElementById('cfg-author').value = cfg.author || '';
+      document.getElementById('cfg-price').value = cfg.price || '';
+      document.getElementById('cfg-original').value = cfg.originalPrice || '';
+      document.getElementById('cfg-upi').value = cfg.upiId || '';
+      document.getElementById('cfg-rzp-key').value = cfg.razorpayKeyId || '';
+      document.getElementById('cfg-subtitle').value = cfg.subtitle || '';
+    } catch(e) { showToast('Could not load config', true); }
+  }
+
+  async function saveConfig() {
+    const btn = document.querySelector('.save-btn');
+    btn.disabled = true; btn.textContent = 'Saving...';
+    try {
+      const body = {
+        bookTitle: document.getElementById('cfg-title').value,
+        author: document.getElementById('cfg-author').value,
+        price: +document.getElementById('cfg-price').value,
+        originalPrice: +document.getElementById('cfg-original').value,
+        upiId: document.getElementById('cfg-upi').value,
+        razorpayKeyId: document.getElementById('cfg-rzp-key').value,
+        subtitle: document.getElementById('cfg-subtitle').value,
+      };
+      const r = await fetch('/api/admin/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': ADMIN_PASSWORD },
+        body: JSON.stringify(body)
+      });
+      if (r.ok) showToast('✅ Settings saved!');
+      else showToast('Error saving settings', true);
+    } catch(e) { showToast('Error: ' + e.message, true); }
+    btn.disabled = false; btn.textContent = '💾 Save Settings';
+  }
+
+  function renderBooks() {
+    const list = document.getElementById('books-list');
+    if (!books.length) {
+      list.innerHTML = '<p style="color:#64748b;font-size:0.85rem;margin-bottom:12px;">No books added yet. Click below to add one.</p>';
+      return;
+    }
+    list.innerHTML = books.map((b, i) => `
+      <div class="book-card">
+        <div class="book-info">
+          <h4>${b.title}</h4>
+          <span>₹${b.price} &nbsp;|&nbsp; <span class="status-badge ${b.status}">${b.status}</span></span>
+        </div>
+        <div class="actions">
+          <button class="btn-sm btn-edit" onclick="openEditBook(${i})">Edit</button>
+          <button class="btn-sm btn-delete" onclick="deleteBook(${i})">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openAddBook() {
+    editingIdx = -1;
+    document.getElementById('modal-title').textContent = 'Add New Book';
+    ['bk-title','bk-price','bk-original','bk-desc','bk-pdf'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('bk-status').value = 'live';
+    document.getElementById('book-modal').classList.add('open');
+  }
+
+  function openEditBook(i) {
+    editingIdx = i;
+    const b = books[i];
+    document.getElementById('modal-title').textContent = 'Edit Book';
+    document.getElementById('bk-title').value = b.title;
+    document.getElementById('bk-price').value = b.price;
+    document.getElementById('bk-original').value = b.original || '';
+    document.getElementById('bk-desc').value = b.desc || '';
+    document.getElementById('bk-pdf').value = b.pdf || '';
+    document.getElementById('bk-status').value = b.status || 'live';
+    document.getElementById('book-modal').classList.add('open');
+  }
+
+  function closeModal() { document.getElementById('book-modal').classList.remove('open'); }
+
+  function saveBook() {
+    const book = {
+      title: document.getElementById('bk-title').value,
+      price: +document.getElementById('bk-price').value,
+      original: +document.getElementById('bk-original').value,
+      desc: document.getElementById('bk-desc').value,
+      pdf: document.getElementById('bk-pdf').value,
+      status: document.getElementById('bk-status').value,
+    };
+    if (!book.title) { showToast('Please enter a title', true); return; }
+    if (editingIdx >= 0) books[editingIdx] = book;
+    else books.push(book);
+    localStorage.setItem('rnh_books', JSON.stringify(books));
+    renderBooks();
+    closeModal();
+    showToast('✅ Book saved!');
+  }
+
+  function deleteBook(i) {
+    if (!confirm('Delete this book?')) return;
+    books.splice(i, 1);
+    localStorage.setItem('rnh_books', JSON.stringify(books));
+    renderBooks();
+  }
+
+  async function loadOrders() {
+    try {
+      const r = await fetch('/api/orders', { headers: { 'x-admin-password': ADMIN_PASSWORD } });
+      if (!r.ok) { document.getElementById('orders-list').innerHTML = '<p style="color:#64748b;font-size:0.85rem;">No orders yet or restricted.</p>'; return; }
+      const data = await r.json();
+      const orders = data.orders || [];
+      if (!orders.length) { document.getElementById('orders-list').innerHTML = '<p style="color:#64748b;font-size:0.85rem;">No orders yet. Start promoting!</p>'; return; }
+      document.getElementById('orders-list').innerHTML = orders.slice(0,10).map(o => `
+        <div class="book-card">
+          <div class="book-info">
+            <h4>${o.name || 'Customer'} &nbsp;<span style="color:#64748b;font-size:0.8rem">${o.email || ''}</span></h4>
+            <span>₹${o.amount || 299} &nbsp;|&nbsp; ${o.status || 'completed'} &nbsp;|&nbsp; ${new Date(o.timestamp||Date.now()).toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      `).join('');
+    } catch(e) { document.getElementById('orders-list').innerHTML = '<p style="color:#64748b;font-size:0.85rem;">Could not load orders.</p>'; }
+  }
+
+  function showToast(msg, isError=false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (isError ? ' error' : '');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 3000);
+  }
+</script>
+</body>
+</html>

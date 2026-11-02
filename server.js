@@ -215,6 +215,32 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify(getConfig()));
       return;
     }
+    // 1b. POST /api/admin/config — password-protected config update
+    if (pathname === '/api/admin/config' && method === 'POST') {
+      const adminPwd = req.headers['x-admin-password'];
+      if (adminPwd !== 'readnova2024') { res.writeHead(403); res.end(JSON.stringify({ error: 'Unauthorized' })); return; }
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try {
+          const updates = JSON.parse(body || '{}');
+          const merged = { ...getConfig(), ...updates };
+          saveConfig(merged);
+          res.writeHead(200);
+          res.end(JSON.stringify({ success: true }));
+        } catch(e) { res.writeHead(400); res.end(JSON.stringify({ error: e.message })); }
+      });
+      return;
+    }
+
+    // 1c. GET /api/orders — password-protected orders list
+    if (pathname === '/api/orders' && method === 'GET') {
+      const adminPwd = req.headers['x-admin-password'];
+      if (adminPwd !== 'readnova2024') { res.writeHead(403); res.end(JSON.stringify({ error: 'Unauthorized' })); return; }
+      res.writeHead(200);
+      res.end(JSON.stringify({ orders: inMemoryOrders }));
+      return;
+    }
 
     // 2. POST /api/create-order
     if (pathname === '/api/create-order' && method === 'POST') {
