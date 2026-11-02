@@ -441,7 +441,14 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // Fallback to index.html for SPA feel
+      // Only fallback to index.html for non-asset requests
+      const ext = path.extname(filePath).toLowerCase();
+      const isAsset = ['.jpg','.jpeg','.png','.gif','.svg','.ico','.pdf','.css','.js','.woff','.woff2'].includes(ext);
+      if (isAsset) {
+        res.writeHead(404);
+        res.end('Not Found');
+        return;
+      }
       const fallback = path.join(PUBLIC_DIR, 'index.html');
       if (fs.existsSync(fallback)) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
