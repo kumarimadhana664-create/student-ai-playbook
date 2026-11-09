@@ -450,15 +450,44 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Normalise path (trim trailing slash, lowercase for route checks)
+  const normPath = (pathname.replace(/\/+$/, '') || '/').toLowerCase();
+
   // ADMIN PANEL route
-  if (pathname === '/admin' || pathname === '/admin.html') {
-    const adminFile = path.join(PUBLIC_DIR, 'admin.html');
-    if (fs.existsSync(adminFile)) {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      fs.createReadStream(adminFile).pipe(res);
-    } else {
-      res.writeHead(404); res.end('Admin panel not found');
+  if (normPath === '/admin' || normPath === '/admin.html') {
+    const candidates = [
+      path.join(PUBLIC_DIR, 'admin.html'),
+      path.join(__dirname, 'public', 'admin.html'),
+      path.join(process.cwd(), 'public', 'admin.html')
+    ];
+    for (const fileCandidate of candidates) {
+      if (fs.existsSync(fileCandidate)) {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(fileCandidate).pipe(res);
+        return;
+      }
     }
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Admin panel not found');
+    return;
+  }
+
+  // SLIDES route
+  if (normPath === '/slides' || normPath === '/slides.html') {
+    const candidates = [
+      path.join(PUBLIC_DIR, 'slides.html'),
+      path.join(__dirname, 'public', 'slides.html'),
+      path.join(process.cwd(), 'public', 'slides.html')
+    ];
+    for (const fileCandidate of candidates) {
+      if (fs.existsSync(fileCandidate)) {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(fileCandidate).pipe(res);
+        return;
+      }
+    }
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Slides page not found');
     return;
   }
 
