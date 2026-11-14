@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">The Student AI Side Hustle Playbook | ReadNovaHub</title>
-  <meta name="description" content="Turn free AI tools into freelance skills, digital services, and your first online income. Verified practical playbook for college students and freelancers.">
+  <meta name="description" content="Turn free AI tools into freelance skills, digital services, and your first online income. High-energy practical playbook for college students.">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces/Serif Italic for Slush contrast -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,37 +19,19 @@
         extend: {
           fontFamily: {
             sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Fraunces', 'serif'],
           },
           colors: {
-            celadon: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              200: '#bbf7d0',
-              300: '#86efac',
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              700: '#15803d',
-              800: '#166534',
-              900: '#14532d',
-              950: '#052e16',
-            },
-            dusty: {
-              50: '#f8fafc',
-              100: '#f1f5f9',
-              200: '#e2e8f0',
-              300: '#cbd5e1',
-              400: '#94a3b8',
-              500: '#64748b',
-              600: '#475569',
-              700: '#334155',
-              800: '#1e293b',
-              900: '#0f172a',
-              950: '#020617',
+            slush: {
+              blue: '#2563eb',
+              sky: '#38bdf8',
+              ice: '#dbeafe',
+              glacier: '#eff6ff',
+              yellow: '#fde047',
+              lime: '#bef264',
+              violet: '#c084fc',
+              dark: '#090d16',
             }
-          },
-          boxShadow: {
-            'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
           }
         }
       }
@@ -66,59 +48,49 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 
-<body class="min-h-full flex flex-col bg-stone-50/50 text-dusty-900 antialiased selection:bg-celadon-100 selection:text-celadon-900">
+<body class="min-h-full flex flex-col bg-[#f0f7ff] text-slush-dark antialiased selection:bg-slush-yellow selection:text-black slush-grid overflow-x-hidden">
 
   <!-- ========================================================================
-       STICKY HEADER / NAVIGATION (CampusShare Style)
+       SLUSH TACTILE CAPSULE NAVBAR
        ======================================================================== -->
-  <header class="sticky top-0 z-40 w-full border-b border-dusty-200/80 bg-white/95 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+  <header class="sticky top-0 z-40 w-full px-3 pt-3 sm:px-6 sm:pt-4">
+    <div class="max-w-6xl mx-auto flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 bg-white/95 backdrop-blur-md border-2 border-black rounded-full shadow-[3px_3px_0px_0px_#000000]">
       
-      <!-- Brand Logo -->
-      <div class="flex items-center gap-6">
-        <a class="flex items-center gap-2.5 group" href="/">
-          <div class="h-9 w-9 rounded-xl bg-celadon-700 text-white flex items-center justify-center shadow-xs group-hover:bg-celadon-800 transition-colors">
-            <i data-lucide="book-open-check" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <span class="font-extrabold text-lg text-dusty-950 tracking-tight">ReadNova<span class="text-celadon-700">Hub</span></span>
-            <span class="hidden sm:block text-[10px] text-dusty-500 tracking-wide font-medium">Student AI & Freelance Digital Playbook</span>
-          </div>
+      <!-- Logo -->
+      <a class="flex items-center gap-2 group" href="/">
+        <div class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-slush-blue text-white flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000000] group-hover:rotate-6 transition-transform">
+          <i data-lucide="zap" class="w-4 h-4 fill-slush-yellow text-slush-yellow"></i>
+        </div>
+        <div class="flex items-baseline gap-1">
+          <span class="font-black text-lg tracking-tight text-black">ReadNova<span class="text-slush-blue">Hub</span></span>
+          <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.2 bg-slush-yellow rounded border border-black shadow-[1px_1px_0px_0px_#000]">2026</span>
+        </div>
+      </a>
+
+      <!-- Center Pill Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-2">
+        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#blueprints">
+          5 Blueprints
         </a>
+        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#calculator">
+          Earnings Calculator
+        </a>
+        <button onclick="openPreviewModal()" class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black cursor-pointer">
+          Free Chapter
+        </button>
+        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#faq">
+          FAQ
+        </a>
+      </nav>
 
-        <!-- Desktop Navigation Links (Pill Style) -->
-        <nav class="hidden md:flex items-center gap-1.5 ml-4">
-          <a class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors bg-celadon-50 text-celadon-900 border border-celadon-200/70 shadow-xs flex items-center gap-1.5" href="#curriculum">
-            <i data-lucide="compass" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>5 Blueprints</span>
-          </a>
-          <a class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors text-dusty-700 hover:text-dusty-950 hover:bg-dusty-100/60 flex items-center gap-1.5" href="#simulator">
-            <i data-lucide="calculator" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Income Simulator</span>
-          </a>
-          <button onclick="openPreviewModal()" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors text-dusty-700 hover:text-dusty-950 hover:bg-dusty-100/60 flex items-center gap-1.5">
-            <i data-lucide="eye" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Free Sample</span>
-          </button>
-          <a class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors text-dusty-700 hover:text-dusty-950 hover:bg-dusty-100/60 flex items-center gap-1.5" href="#reviews">
-            <i data-lucide="star" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Reviews</span>
-          </a>
-          <a class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors text-dusty-700 hover:text-dusty-950 hover:bg-dusty-100/60 flex items-center gap-1.5" href="#faq">
-            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>FAQ</span>
-          </a>
-        </nav>
-      </div>
-
-      <!-- Right Header Actions -->
-      <div class="flex items-center gap-3">
-        <a href="/admin" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-dusty-600 hover:text-dusty-950 px-2.5 py-1.5 rounded-lg hover:bg-dusty-100 transition-colors">
-          <i data-lucide="lock" class="w-3.5 h-3.5 text-dusty-500"></i>
+      <!-- Right Action CTA -->
+      <div class="flex items-center gap-2">
+        <a href="/admin" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-gray-700 hover:text-black px-2.5 py-1 rounded-full hover:bg-black/5 transition-colors">
+          <i data-lucide="lock" class="w-3 h-3"></i>
           <span>Admin</span>
         </a>
-        <button onclick="openCheckoutModal()" class="inline-flex items-center justify-center whitespace-nowrap transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celadon-600 active:scale-[0.98] bg-celadon-700 text-white hover:bg-celadon-800 border border-celadon-800/80 h-9 rounded-xl px-4 text-xs font-bold gap-2 shadow-xs cursor-pointer">
-          <span>Get Instant Access — ₹299</span>
+        <button onclick="openCheckoutModal()" class="slush-btn-primary px-4 sm:px-5 py-2 text-xs font-black gap-1.5 uppercase tracking-wider">
+          <span>Get Playbook ₹299</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
@@ -129,252 +101,270 @@
   <main class="flex-1">
 
     <!-- ========================================================================
-         HERO SECTION (CampusShare Clean Gradient & Launch Banner)
-         ======================================================================== -->
-    <section class="relative overflow-hidden bg-gradient-to-b from-celadon-50/70 via-white to-stone-50/40 py-12 sm:py-20 border-b border-dusty-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+       SLUSH HERO SECTION (Massive Typography + Organic 3D Blob + Floating Stickers)
+       ======================================================================== -->
+    <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+      
+      <!-- Animated Morphing Blue Blob in Background (Slush Signature) -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] h-[340px] sm:h-[620px] slush-blob pointer-events-none -z-10"></div>
 
-        <!-- Launch Offer Announcement Banner (CampusShare Judge Tour Banner Style) -->
-        <div class="mb-8 mx-auto max-w-2xl bg-celadon-50/90 border border-celadon-200 rounded-2xl p-4 text-dusty-900 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
-          <div class="flex items-center gap-3 text-left">
-            <div class="w-8 h-8 rounded-lg bg-celadon-100 flex items-center justify-center shrink-0 text-celadon-800">
-              <i data-lucide="award" class="w-4 h-4"></i>
-            </div>
-            <div>
-              <strong class="block text-xs font-bold uppercase tracking-wider text-celadon-950">Official 2026 Student Edition Released</strong>
-              <p class="text-xs text-dusty-600 leading-snug">Flat 50% Launch Deal: ₹299 (Regular ₹599) • Instant PDF Download to your phone & PC.</p>
-            </div>
-          </div>
-          <button onclick="openPreviewModal()" class="shrink-0 inline-flex items-center justify-center whitespace-nowrap transition-all duration-150 active:scale-[0.98] bg-white text-celadon-900 hover:bg-celadon-100/70 border border-celadon-300 h-8 rounded-lg px-3 w-full sm:w-auto text-xs font-bold gap-1 shadow-xs cursor-pointer">
-            <span>Read Free Sample</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-celadon-700"></i>
-          </button>
+      <!-- Floating Playful 3D Stickers (Animated!) -->
+      <div class="hidden lg:block absolute top-16 left-12 animate-float-1 pointer-events-none">
+        <div class="slush-badge bg-slush-lime text-black px-4 py-2 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
+          <span class="text-sm">⚡</span>
+          <span>Earn ₹15k–₹35k/Month</span>
+        </div>
+      </div>
+
+      <div class="hidden lg:block absolute top-28 right-16 animate-float-2 pointer-events-none">
+        <div class="slush-badge bg-slush-yellow text-black px-4 py-2 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
+          <span class="text-sm">🔥</span>
+          <span>Launch Deal: 50% OFF</span>
+        </div>
+      </div>
+
+      <div class="hidden lg:block absolute bottom-24 left-20 animate-float-3 pointer-events-none">
+        <div class="slush-badge bg-slush-violet text-black px-3.5 py-1.5 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
+          <span class="text-sm">🤖</span>
+          <span>100% Free AI Tools Only</span>
+        </div>
+      </div>
+
+      <div class="hidden lg:block absolute bottom-28 right-24 animate-float-4 pointer-events-none">
+        <div class="slush-badge bg-white text-black px-3.5 py-1.5 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
+          <span class="text-sm">✨</span>
+          <span>Instant PDF Download</span>
+        </div>
+      </div>
+
+      <!-- Hero Main Content -->
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+
+        <!-- Top Pill Tag -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] text-xs font-black uppercase tracking-wider mb-6 animate-pulse-glow">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+          <span>The Practical 2026 Student Guide</span>
         </div>
 
-        <!-- Eyebrow Pill Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-celadon-100/80 border border-celadon-200 text-celadon-900 text-xs font-bold mb-6 shadow-xs">
-          <i data-lucide="shield-check" class="w-4 h-4 text-celadon-700"></i>
-          <span>College Student & Freelance Trust Network</span>
-        </div>
-
-        <!-- Main Headline -->
-        <h1 id="hero-title" class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-dusty-950 tracking-tight max-w-4xl mx-auto leading-tight sm:leading-none">
-          Unlock High-Value AI Freelance Skills & Digital Income
+        <!-- Slush High-Impact Headline -->
+        <h1 id="hero-title" class="text-4xl sm:text-7xl lg:text-8xl font-black text-black tracking-tight leading-[0.98] uppercase">
+          Your College Income. <br>
+          <span class="font-serif italic font-normal text-slush-blue lowercase">unstuck.</span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="mt-5 text-base sm:text-lg text-dusty-600 max-w-2xl mx-auto leading-relaxed">
-          The practical, zero-fluff playbook showing college students and beginners how to turn free AI tools into ₹15,000 – ₹35,000/month freelance micro-services with zero coding, step-by-step prompt templates, and real client outreach scripts.
+        <p class="mt-6 text-base sm:text-xl text-gray-800 font-medium max-w-2xl mx-auto leading-relaxed">
+          Stop using ChatGPT just for homework summaries. Learn the 5 high-paying AI micro-services that real clients pay <strong class="font-extrabold text-black">₹1,000 – ₹3,500/gig</strong> for—with zero coding and ready-to-use prompt templates.
         </p>
 
         <!-- CTA Action Buttons -->
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-          <button onclick="openCheckoutModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-sm shadow-xs transition-all active:scale-[0.98] cursor-pointer">
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openCheckoutModal()" class="slush-btn-primary text-sm sm:text-base px-8 py-4 uppercase tracking-wider gap-2.5 w-full sm:w-auto animate-shine">
             <i data-lucide="lock" class="w-4 h-4"></i>
             <span>Unlock Instant Access — ₹299</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
-          <button onclick="openPreviewModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-dusty-200 hover:bg-dusty-50 text-dusty-800 font-semibold text-sm shadow-xs transition-colors cursor-pointer">
-            <i data-lucide="book-open" class="w-4 h-4 text-celadon-700"></i>
-            <span>Read Chapter 1 Preview</span>
+          
+          <button onclick="openPreviewModal()" class="slush-btn-white text-sm sm:text-base px-7 py-4 gap-2 w-full sm:w-auto">
+            <i data-lucide="eye" class="w-4 h-4 text-slush-blue"></i>
+            <span>Read Chapter 1 Free</span>
           </button>
         </div>
 
-        <!-- Trust Matrix (CampusShare 4-Metric Grid) -->
-        <div class="mt-14 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
-          
-          <div class="bg-white border border-dusty-200/90 rounded-2xl p-4 shadow-xs">
-            <div class="flex items-center gap-2 text-celadon-700 mb-1.5">
-              <i data-lucide="check-circle" class="w-4 h-4"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-dusty-950">5 AI Micro-Services</span>
-            </div>
-            <p class="text-xs text-dusty-600">Upwork, Fiverr & direct client blueprints tested for college schedules.</p>
-          </div>
-
-          <div class="bg-white border border-dusty-200/90 rounded-2xl p-4 shadow-xs">
-            <div class="flex items-center gap-2 text-celadon-700 mb-1.5">
-              <i data-lucide="file-text" class="w-4 h-4"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-dusty-950">25 Hands-on Pages</span>
-            </div>
-            <p class="text-xs text-dusty-600">Zero filler theory. Copy-paste prompt templates and outreach scripts.</p>
-          </div>
-
-          <div class="bg-white border border-dusty-200/90 rounded-2xl p-4 shadow-xs">
-            <div class="flex items-center gap-2 text-celadon-700 mb-1.5">
-              <i data-lucide="shield-check" class="w-4 h-4"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-dusty-950">Verified Razorpay UPI</span>
-            </div>
-            <p class="text-xs text-dusty-600">GPay, PhonePe, Paytm, Cards. Instant automated PDF delivery to your device.</p>
-          </div>
-
-          <div class="bg-white border border-dusty-200/90 rounded-2xl p-4 shadow-xs">
-            <div class="flex items-center gap-2 text-amber-500 mb-1.5">
-              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-dusty-950">4.9 / 5.0 Rating</span>
-            </div>
-            <p class="text-xs text-dusty-600">Trusted by 420+ student readers across colleges in India.</p>
-          </div>
-
+        <!-- Price Anchor Sticker -->
+        <div class="mt-6 flex items-center justify-center gap-2 text-xs font-bold text-gray-700">
+          <span>Special Launch:</span>
+          <span class="font-black text-base text-black bg-slush-yellow px-2 py-0.5 rounded-md border border-black shadow-[1px_1px_0px_0px_#000]">₹299</span>
+          <span class="line-through text-gray-400">₹599</span>
+          <span class="text-green-700 font-extrabold">• Delivered instantly via Razorpay UPI</span>
         </div>
 
       </div>
     </section>
 
     <!-- ========================================================================
-         CURRICULUM & RESOURCE CATALOG (CampusShare Resource Catalog Style)
-         ======================================================================== -->
-    <section id="curriculum" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-50 border border-celadon-200 text-celadon-900 text-xs font-bold mb-3">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Curriculum & Resource Catalog</span>
-          </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-dusty-950 tracking-tight">The 5 High-Demand AI Micro-Services</h2>
-          <p class="text-sm sm:text-base text-dusty-600 mt-2 max-w-2xl">
-            Each blueprint includes exact step-by-step prompt templates, client pricing recommendations, and deliverable checklists.
-          </p>
+       SLUSH INFINITE MARQUEE TICKER (High-Energy Running Banner)
+       ======================================================================== -->
+    <div class="w-full bg-black text-white py-3 border-y-2 border-black overflow-hidden -rotate-1 shadow-[0_4px_10px_rgba(0,0,0,0.15)] my-6">
+      <div class="animate-marquee whitespace-nowrap text-xs sm:text-sm font-black tracking-widest uppercase flex items-center gap-6">
+        <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
+        <span class="text-slush-yellow">✦</span>
+        <span>₹299 LAUNCH DEAL</span>
+        <span class="text-slush-lime">✦</span>
+        <span>NO CODING DEGREE NEEDED</span>
+        <span class="text-slush-sky">✦</span>
+        <span>CHATGPT + CANVA + MIDJOURNEY</span>
+        <span class="text-slush-yellow">✦</span>
+        <span>INSTANT AUTOMATED PDF DELIVERY</span>
+        <span class="text-slush-lime">✦</span>
+        <span>EARN ₹15,000 – ₹35,000/MONTH</span>
+        <span class="text-slush-sky">✦</span>
+        <span>5 READY-TO-USE BLUEPRINTS</span>
+        <span class="text-slush-yellow">✦</span>
+        <!-- Duplicated for seamless loop -->
+        <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
+        <span class="text-slush-yellow">✦</span>
+        <span>₹299 LAUNCH DEAL</span>
+        <span class="text-slush-lime">✦</span>
+        <span>NO CODING DEGREE NEEDED</span>
+        <span class="text-slush-sky">✦</span>
+        <span>CHATGPT + CANVA + MIDJOURNEY</span>
+        <span class="text-slush-yellow">✦</span>
+        <span>INSTANT AUTOMATED PDF DELIVERY</span>
+        <span class="text-slush-lime">✦</span>
+        <span>EARN ₹15,000 – ₹35,000/MONTH</span>
+        <span class="text-slush-sky">✦</span>
+        <span>5 READY-TO-USE BLUEPRINTS</span>
+        <span class="text-slush-yellow">✦</span>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+       THE 5 AI HUSTLES (Slush Tactile Resource Grid)
+       ======================================================================== -->
+    <section id="blueprints" class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="slush-badge inline-flex items-center gap-1.5 px-3 py-1 bg-slush-yellow text-black mb-3">
+          <span>⚡ THE CURRICULUM</span>
         </div>
-        <div class="shrink-0">
-          <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-dusty-100 text-dusty-700 border border-dusty-200 inline-flex items-center gap-1.5">
-            <i data-lucide="clock" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Average Setup Time: 1–2 Hours</span>
-          </span>
-        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+          5 High-Value AI Micro-Services
+        </h2>
+        <p class="text-sm sm:text-base text-gray-700 mt-3 font-medium">
+          Every chapter gives you the exact prompt formulas, client deliverables, and cold DM scripts.
+        </p>
       </div>
 
-      <!-- 5 Resource Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- Card 1 -->
-        <div class="bg-white border border-dusty-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="slush-card p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-celadon-50 text-celadon-800 border border-celadon-200">Blueprint 01</span>
-              <span class="text-xs font-bold text-celadon-700">₹1,200 – ₹2,500 / gig</span>
+              <span class="slush-badge bg-slush-ice text-slush-blue px-2.5 py-0.5">Blueprint 01</span>
+              <span class="text-xs font-black bg-slush-lime px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">₹1,200 – ₹2,500</span>
             </div>
-            <h3 class="font-bold text-lg text-dusty-950 mb-2">Long-Form AI SEO Articles & Founder Summaries</h3>
-            <p class="text-xs sm:text-sm text-dusty-600 leading-relaxed mb-4">
+            <h3 class="font-black text-xl text-black mb-2 group-hover:text-slush-blue transition-colors">Long-Form AI SEO Articles & Founder Summaries</h3>
+            <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed mb-4">
               How to write in-depth, rankable 1,500-word articles for startups and tech founders using free AI models with human editing passes.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">ChatGPT</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Perplexity</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Grammarly</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">ChatGPT</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Perplexity</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Notion</span>
             </div>
           </div>
-          <div class="pt-4 border-t border-dusty-100 flex items-center justify-between text-xs text-dusty-500">
-            <span class="flex items-center gap-1 text-celadon-700 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> Prompt Template Included</span>
-            <span>Beginner</span>
+          <div class="pt-4 border-t-2 border-black/10 flex items-center justify-between text-xs font-bold text-gray-700">
+            <span class="flex items-center gap-1 text-slush-blue"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Prompts Included</span>
+            <span>Beginner Friendly</span>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white border border-dusty-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="slush-card p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-celadon-50 text-celadon-800 border border-celadon-200">Blueprint 02</span>
-              <span class="text-xs font-bold text-celadon-700">₹800 – ₹1,800 / carousel</span>
+              <span class="slush-badge bg-slush-ice text-slush-blue px-2.5 py-0.5">Blueprint 02</span>
+              <span class="text-xs font-black bg-slush-lime px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">₹800 – ₹1,800</span>
             </div>
-            <h3 class="font-bold text-lg text-dusty-950 mb-2">Social Media AI Graphics & Infocards</h3>
-            <p class="text-xs sm:text-sm text-dusty-600 leading-relaxed mb-4">
-              Create high-retention LinkedIn and Instagram visual decks in 20 minutes for coaches, small businesses, and digital agencies.
+            <h3 class="font-black text-xl text-black mb-2 group-hover:text-slush-blue transition-colors">Social Media AI Graphics & Carousels</h3>
+            <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed mb-4">
+              Create high-retention LinkedIn and Instagram visual decks in 20 minutes for coaches, creators, and local digital agencies.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Canva Magic</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Midjourney</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Figma</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Canva AI</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Midjourney</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Figma</span>
             </div>
           </div>
-          <div class="pt-4 border-t border-dusty-100 flex items-center justify-between text-xs text-dusty-500">
-            <span class="flex items-center gap-1 text-celadon-700 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> Design Presets Included</span>
-            <span>Beginner</span>
+          <div class="pt-4 border-t-2 border-black/10 flex items-center justify-between text-xs font-bold text-gray-700">
+            <span class="flex items-center gap-1 text-slush-blue"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Design Presets</span>
+            <span>Beginner Friendly</span>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white border border-dusty-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="slush-card p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-celadon-50 text-celadon-800 border border-celadon-200">Blueprint 03</span>
-              <span class="text-xs font-bold text-celadon-700">₹1,500 – ₹3,500 / pack</span>
+              <span class="slush-badge bg-slush-ice text-slush-blue px-2.5 py-0.5">Blueprint 03</span>
+              <span class="text-xs font-black bg-slush-lime px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">₹1,500 – ₹3,500</span>
             </div>
-            <h3 class="font-bold text-lg text-dusty-950 mb-2">Short-Form Reel & TikTok Script Packs</h3>
-            <p class="text-xs sm:text-sm text-dusty-600 leading-relaxed mb-4">
-              Write 5 viral hook-to-CTA vertical video scripts in 30 minutes. The exact 3-second hook structure that content creators pay for weekly.
+            <h3 class="font-black text-xl text-black mb-2 group-hover:text-slush-blue transition-colors">Viral Reel & TikTok Video Script Packs</h3>
+            <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed mb-4">
+              Write 5 viral hook-to-CTA vertical video scripts in 30 minutes. The exact 3-second hook structures that creators pay for weekly.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Claude</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">ChatGPT</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">CapCut</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Claude</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">ChatGPT</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">CapCut</span>
             </div>
           </div>
-          <div class="pt-4 border-t border-dusty-100 flex items-center justify-between text-xs text-dusty-500">
-            <span class="flex items-center gap-1 text-celadon-700 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> 10 Hook Formulas</span>
+          <div class="pt-4 border-t-2 border-black/10 flex items-center justify-between text-xs font-bold text-gray-700">
+            <span class="flex items-center gap-1 text-slush-blue"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 10 Hook Formulas</span>
             <span>Intermediate</span>
           </div>
         </div>
 
         <!-- Card 4 -->
-        <div class="bg-white border border-dusty-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="slush-card p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-celadon-50 text-celadon-800 border border-celadon-200">Blueprint 04</span>
-              <span class="text-xs font-bold text-celadon-700">High Reply Rates</span>
+              <span class="slush-badge bg-slush-ice text-slush-blue px-2.5 py-0.5">Blueprint 04</span>
+              <span class="text-xs font-black bg-slush-yellow px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">35%+ Response</span>
             </div>
-            <h3 class="font-bold text-lg text-dusty-950 mb-2">Cold Client Outreach & DM System</h3>
-            <p class="text-xs sm:text-sm text-dusty-600 leading-relaxed mb-4">
-              How to land your first 3 paying clients without a huge portfolio. 7 copy-paste cold email and Instagram DM scripts that get 35%+ responses.
+            <h3 class="font-black text-xl text-black mb-2 group-hover:text-slush-blue transition-colors">Cold Client Outreach & DM Acquisition</h3>
+            <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed mb-4">
+              How to land your first 3 paying clients without a massive portfolio. 7 copy-paste cold email and LinkedIn scripts that convert.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">LinkedIn DM</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Email Scripts</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Notion Tracker</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">LinkedIn DMs</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Email Scripts</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Notion CRM</span>
             </div>
           </div>
-          <div class="pt-4 border-t border-dusty-100 flex items-center justify-between text-xs text-dusty-500">
-            <span class="flex items-center gap-1 text-celadon-700 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> 7 Outreach Templates</span>
+          <div class="pt-4 border-t-2 border-black/10 flex items-center justify-between text-xs font-bold text-gray-700">
+            <span class="flex items-center gap-1 text-slush-blue"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 7 Outreach Templates</span>
             <span>All Levels</span>
           </div>
         </div>
 
         <!-- Card 5 -->
-        <div class="bg-white border border-dusty-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="slush-card p-6 flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
-              <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-celadon-50 text-celadon-800 border border-celadon-200">Blueprint 05</span>
-              <span class="text-xs font-bold text-celadon-700">Passive 24/7 Sales</span>
+              <span class="slush-badge bg-slush-ice text-slush-blue px-2.5 py-0.5">Blueprint 05</span>
+              <span class="text-xs font-black bg-slush-lime px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">Passive Sales</span>
             </div>
-            <h3 class="font-bold text-lg text-dusty-950 mb-2">Automated Digital Product Checkout</h3>
-            <p class="text-xs sm:text-sm text-dusty-600 leading-relaxed mb-4">
-              Package your notes, templates, or playbooks into an automated store like this one that collects UPI payments and delivers files 24/7.
+            <h3 class="font-black text-xl text-black mb-2 group-hover:text-slush-blue transition-colors">Automated Digital Checkout Pipeline</h3>
+            <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed mb-4">
+              Package your notes, playbooks, or templates into an automated store like this one that collects UPI payments and delivers files 24/7.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Razorpay</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Vercel</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-dusty-100 text-dusty-700">Instant PDF</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Razorpay Live</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Vercel Edge</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gray-100 border border-black">Instant PDF</span>
             </div>
           </div>
-          <div class="pt-4 border-t border-dusty-100 flex items-center justify-between text-xs text-dusty-500">
-            <span class="flex items-center gap-1 text-celadon-700 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> Complete Store Pipeline</span>
-            <span>Intermediate</span>
+          <div class="pt-4 border-t-2 border-black/10 flex items-center justify-between text-xs font-bold text-gray-700">
+            <span class="flex items-center gap-1 text-slush-blue"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Store Pipeline Code</span>
+            <span>All Levels</span>
           </div>
         </div>
 
-        <!-- Callout / Unlock Card -->
-        <div class="bg-gradient-to-br from-celadon-800 to-dusty-950 text-white rounded-2xl p-6 shadow-xs flex flex-col justify-between">
+        <!-- Slush Spotlight Card -->
+        <div class="slush-card p-6 bg-black text-white flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-slush-blue/40 rounded-full blur-xl pointer-events-none"></div>
           <div>
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-white/10 text-celadon-200 border border-white/10 mb-4">
-              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-              <span>All Included in 1 Playbook</span>
-            </div>
-            <h3 class="font-bold text-xl text-white mb-2">Get All 5 Blueprints Today</h3>
-            <p class="text-xs sm:text-sm text-dusty-300 leading-relaxed mb-6">
-              One single payment of ₹299 gives you lifetime access to all 5 micro-services, copy-paste prompts, and future edition updates.
+            <span class="slush-badge bg-slush-lime text-black px-2.5 py-0.5 mb-3 inline-block">All 5 Included</span>
+            <h3 class="font-black text-2xl text-white mb-2 uppercase">Unlock All 5 For Just ₹299</h3>
+            <p class="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed mb-6">
+              One single purchase grants you lifetime access to the complete 25-page playbook and free updates.
             </p>
           </div>
-          <button onclick="openCheckoutModal()" class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-celadon-500 hover:bg-celadon-400 text-dusty-950 font-bold text-xs shadow-xs transition-colors cursor-pointer">
-            <span>Unlock All 5 for ₹299</span>
+          <button onclick="openCheckoutModal()" class="slush-btn-lime w-full py-3 text-xs uppercase tracking-wider font-black gap-2">
+            <span>Buy Playbook (₹299)</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -383,169 +373,161 @@
     </section>
 
     <!-- ========================================================================
-         INTERACTIVE FREELANCE INCOME SIMULATOR (CampusShare Calculation Console)
-         ======================================================================== -->
-    <section id="simulator" class="py-16 bg-white border-y border-dusty-200/80">
+       SLUSH TACTILE CALCULATOR CONSOLE
+       ======================================================================== -->
+    <section id="calculator" class="py-16 bg-white border-y-2 border-black">
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-50 border border-celadon-200 text-celadon-900 text-xs font-bold mb-3">
-            <i data-lucide="calculator" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Interactive Earnings Simulator</span>
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <div class="slush-badge inline-flex items-center gap-1.5 px-3 py-1 bg-slush-lime text-black mb-3">
+            <span>💰 EARNINGS SIMULATOR</span>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-dusty-950 tracking-tight">Calculate Your Monthly Side Income</h2>
-          <p class="text-sm text-dusty-600 mt-2">Adjust the sliders based on your available college hours to see realistic freelance projections.</p>
+          <h2 class="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+            How Much Can You Make?
+          </h2>
+          <p class="text-sm text-gray-700 mt-2 font-medium">Drag the sliders to test realistic monthly income based on your college schedule.</p>
         </div>
 
-        <div class="bg-stone-50 border border-dusty-200/90 rounded-3xl p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="slush-card p-6 sm:p-10 bg-[#f8fbff] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <!-- Sliders Side -->
-          <div class="lg:col-span-7 space-y-7">
+          <!-- Controls -->
+          <div class="lg:col-span-7 space-y-6">
             
             <div>
               <div class="flex justify-between items-center mb-2">
-                <label class="text-xs font-bold uppercase tracking-wider text-dusty-800">Completed Micro-Gigs per Week</label>
-                <span id="slider-sales-val" class="text-sm font-extrabold text-celadon-800 bg-white border border-dusty-200 px-2.5 py-0.5 rounded-lg shadow-xs">4 gigs / wk</span>
+                <label class="text-xs font-black uppercase tracking-wider text-black">Micro-Gigs Completed Per Week</label>
+                <span id="slider-sales-val" class="slush-badge bg-white px-3 py-1 text-black">4 gigs / wk</span>
               </div>
               <input type="range" id="slider-sales" min="1" max="15" value="4" class="w-full">
-              <div class="flex justify-between text-[11px] text-dusty-400 mt-1">
-                <span>1 gig / wk (Casual)</span>
-                <span>8 gigs / wk (Active)</span>
-                <span>15 gigs / wk (Pro)</span>
+              <div class="flex justify-between text-[11px] font-bold text-gray-500 mt-1">
+                <span>1 gig (Part-time)</span>
+                <span>8 gigs (Active)</span>
+                <span>15 gigs (Power Hustler)</span>
               </div>
             </div>
 
             <div>
               <div class="flex justify-between items-center mb-2">
-                <label class="text-xs font-bold uppercase tracking-wider text-dusty-800">Average Rate per AI Micro-Gig</label>
-                <span id="slider-price-val" class="text-sm font-extrabold text-celadon-800 bg-white border border-dusty-200 px-2.5 py-0.5 rounded-lg shadow-xs">₹1,500 / gig</span>
+                <label class="text-xs font-black uppercase tracking-wider text-black">Average Price Per AI Gig</label>
+                <span id="slider-price-val" class="slush-badge bg-slush-yellow px-3 py-1 text-black">₹1,500 / gig</span>
               </div>
               <input type="range" id="slider-price" min="500" max="4000" step="100" value="1500" class="w-full">
-              <div class="flex justify-between text-[11px] text-dusty-400 mt-1">
-                <span>₹500 (Basic Social Post)</span>
-                <span>₹1,500 (Carousel / Article)</span>
-                <span>₹4,000 (Script Pack)</span>
+              <div class="flex justify-between text-[11px] font-bold text-gray-500 mt-1">
+                <span>₹500 (Social Graphic)</span>
+                <span>₹1,500 (SEO Article)</span>
+                <span>₹4,000 (Script Package)</span>
               </div>
             </div>
 
-            <div class="p-4 rounded-xl bg-celadon-100/60 border border-celadon-200 text-xs text-celadon-950 flex items-start gap-2.5">
-              <i data-lucide="info" class="w-4 h-4 text-celadon-700 shrink-0 mt-0.5"></i>
-              <span>Most students dedicate 1–2 hours in the evening and complete 3–5 micro-gigs each week while managing classes and exams.</span>
+            <div class="p-4 rounded-xl bg-slush-ice border-2 border-black text-xs font-medium text-black flex items-start gap-2.5">
+              <i data-lucide="info" class="w-4 h-4 text-slush-blue shrink-0 mt-0.5"></i>
+              <span>Most students dedicate 1–2 hours each evening and earn their first ₹15,000+ within their first month using Blueprint 2 and 3.</span>
             </div>
 
           </div>
 
-          <!-- Output Console Card -->
-          <div class="lg:col-span-5 bg-white border border-dusty-200 rounded-2xl p-6 shadow-xs text-center">
-            <span class="text-xs font-bold uppercase tracking-wider text-dusty-500 block mb-1">Estimated Monthly Income</span>
-            <div id="calc-monthly-income" class="text-4xl sm:text-5xl font-extrabold text-celadon-800 tracking-tight my-2">₹24,000</div>
-            <span class="text-xs text-dusty-500 block mb-6">Annualized Potential: <strong id="calc-annual-income" class="text-dusty-800 font-bold">₹2,88,000 / year</strong></span>
+          <!-- Result Console -->
+          <div class="lg:col-span-5 bg-black text-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_#bef264] text-center">
+            <span class="text-[11px] font-black uppercase tracking-widest text-slush-yellow block mb-1">Monthly Freelance Income</span>
+            <div id="calc-monthly-income" class="text-5xl sm:text-6xl font-black text-slush-lime tracking-tight my-2">₹24,000</div>
+            <span class="text-xs text-gray-300 block mb-6">Annual Potential: <strong id="calc-annual-income" class="text-white font-extrabold">₹2,88,000 / year</strong></span>
 
-            <div class="space-y-2.5 pt-4 border-t border-dusty-100 text-left text-xs text-dusty-600 mb-6">
-              <div class="flex items-center justify-between">
+            <div class="space-y-2 pt-4 border-t border-white/20 text-xs text-left text-gray-300 mb-6 font-medium">
+              <div class="flex justify-between">
                 <span>Playbook Investment:</span>
-                <span class="font-bold text-dusty-900">₹299 (One-time)</span>
+                <span class="text-white font-bold">₹299</span>
               </div>
-              <div class="flex items-center justify-between">
-                <span>First Client Return:</span>
-                <span class="font-bold text-celadon-700">~5x ROI on Gig 1</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span>Delivery:</span>
-                <span class="font-bold text-dusty-900">Instant PDF Download</span>
+              <div class="flex justify-between">
+                <span>First Gig Payoff:</span>
+                <span class="text-slush-lime font-bold">500% ROI on Day 1</span>
               </div>
             </div>
 
-            <button onclick="openCheckoutModal()" class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer">
-              <span>Get Started Now — ₹299</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <button onclick="openCheckoutModal()" class="slush-btn-lime w-full py-3.5 text-xs font-black uppercase tracking-wider">
+              <span>Start Earning Today</span>
             </button>
           </div>
 
         </div>
+
       </div>
     </section>
 
     <!-- ========================================================================
-         BOOK SPECIFICATIONS & VERIFIED RECORD (CampusShare Inspection Style)
-         ======================================================================== -->
-    <section class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="bg-white border border-dusty-200/90 rounded-3xl p-6 sm:p-12 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+       SLUSH 3D BOOK INSPECTION & SHOWCASE
+       ======================================================================== -->
+    <section class="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="slush-card p-6 sm:p-12 bg-white grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        <!-- Book 3D Showcase -->
+        <!-- 3D Book Showcase -->
         <div class="lg:col-span-5 text-center">
-          <div id="hero-book-wrap" class="book-container resting">
+          <div id="hero-book-wrap" class="book-container">
             <div id="book-3d-element" class="book-3d">
               <div class="book-spine"></div>
               <div class="book-front p-7 flex flex-col justify-between text-left text-white">
                 <div>
                   <div class="flex items-center justify-between mb-4">
-                    <span class="text-[10px] font-bold tracking-widest uppercase bg-white/10 px-2 py-0.5 rounded border border-white/20">2026 EDITION</span>
-                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+                    <span class="slush-badge bg-slush-lime text-black px-2 py-0.5 text-[9px]">2026 EDITION</span>
+                    <i data-lucide="sparkles" class="w-4 h-4 text-slush-yellow"></i>
                   </div>
-                  <h3 id="cover-title" class="text-2xl font-extrabold tracking-tight leading-tight text-white mt-4">The Student AI Side Hustle Playbook</h3>
-                  <p class="text-xs text-indigo-200 mt-2">Turn Free AI Tools Into Real Freelance Income</p>
+                  <h3 id="cover-title" class="text-2xl font-black tracking-tight leading-tight text-white mt-4 uppercase">The Student AI Side Hustle Playbook</h3>
+                  <p class="text-xs text-slush-ice mt-2 font-medium">Turn Free AI Tools Into Real Freelance Income</p>
                 </div>
                 <div>
-                  <div class="h-0.5 w-12 bg-amber-400 mb-3"></div>
-                  <span id="cover-author" class="text-xs font-bold text-white tracking-wider uppercase">ReadNovaHub</span>
-                  <span class="block text-[10px] text-indigo-300">Official Student Resource</span>
+                  <div class="h-1 w-12 bg-slush-lime mb-3 rounded"></div>
+                  <span id="cover-author" class="text-xs font-black text-white tracking-wider uppercase block">ReadNovaHub</span>
+                  <span class="text-[10px] text-gray-300">Official Student Edition</span>
                 </div>
               </div>
             </div>
             <div id="book-shadow-element" class="book-shadow"></div>
           </div>
-          <button onclick="openPreviewModal()" class="mt-8 inline-flex items-center gap-1.5 text-xs font-bold text-celadon-700 hover:text-celadon-800 bg-celadon-50 border border-celadon-200 px-4 py-2 rounded-xl transition-colors cursor-pointer">
-            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+          
+          <button onclick="openPreviewModal()" class="mt-8 slush-btn-white px-5 py-2.5 text-xs font-bold gap-1.5">
+            <i data-lucide="eye" class="w-3.5 h-3.5 text-slush-blue"></i>
             <span>Preview Real Pages Inside</span>
           </button>
         </div>
 
-        <!-- Specifications Table -->
+        <!-- Details -->
         <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-50 border border-celadon-200 text-celadon-900 text-xs font-bold mb-3">
-            <i data-lucide="clipboard-check" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Verified Publication Record</span>
+          <div class="slush-badge inline-flex items-center gap-1.5 px-3 py-1 bg-slush-ice text-slush-blue mb-3">
+            <span>📖 WHAT'S INSIDE</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-dusty-950 tracking-tight">Complete Digital Asset Specifications</h2>
-          <p class="text-xs sm:text-sm text-dusty-600 mt-2 mb-6">
-            Everything is pre-formatted for instant reading on smartphones, tablets, or laptops right after checkout.
+          <h2 class="text-3xl sm:text-4xl font-black text-black tracking-tight uppercase">
+            Everything You Need In 25 Actionable Pages
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-600 mt-2 mb-6 font-medium">
+            Zero filler history lessons about AI. You get straight to the prompt formulas and client workflows.
           </p>
 
-          <div class="divide-y divide-dusty-100 border border-dusty-200 rounded-2xl overflow-hidden text-xs sm:text-sm">
-            <div class="flex items-center justify-between p-3.5 bg-stone-50/60">
-              <span class="text-dusty-500 font-medium">Document Title</span>
-              <span class="font-bold text-dusty-900">The Student AI Side Hustle Playbook</span>
+          <div class="space-y-2.5 text-xs sm:text-sm font-medium">
+            <div class="p-3 bg-[#f8fbff] border-2 border-black rounded-xl flex items-center justify-between">
+              <span class="font-bold text-black flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Chapter 1: The AI Freelancer Mindset</span>
+              <span class="text-gray-500 font-bold">Pages 1–4</span>
             </div>
-            <div class="flex items-center justify-between p-3.5 bg-white">
-              <span class="text-dusty-500 font-medium">Author & Publisher</span>
-              <span class="font-bold text-dusty-900">ReadNovaHub (@readnovahub)</span>
+            <div class="p-3 bg-[#f8fbff] border-2 border-black rounded-xl flex items-center justify-between">
+              <span class="font-bold text-black flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Chapter 2: The 5 High-Demand AI Micro-Services</span>
+              <span class="text-gray-500 font-bold">Pages 5–14</span>
             </div>
-            <div class="flex items-center justify-between p-3.5 bg-stone-50/60">
-              <span class="text-dusty-500 font-medium">Format & Size</span>
-              <span class="font-bold text-dusty-900">High-Res Vector PDF (Instant Automated Delivery)</span>
+            <div class="p-3 bg-[#f8fbff] border-2 border-black rounded-xl flex items-center justify-between">
+              <span class="font-bold text-black flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Chapter 3: Copy-Paste Client Cold DM Templates</span>
+              <span class="text-gray-500 font-bold">Pages 15–20</span>
             </div>
-            <div class="flex items-center justify-between p-3.5 bg-white">
-              <span class="text-dusty-500 font-medium">Length</span>
-              <span class="font-bold text-dusty-900">25 Full Pages (Actionable Prompts & Frameworks)</span>
-            </div>
-            <div class="flex items-center justify-between p-3.5 bg-stone-50/60">
-              <span class="text-dusty-500 font-medium">Payment Gateway</span>
-              <span class="font-bold text-celadon-700 flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Razorpay Live (UPI, GPay, Cards)</span>
-            </div>
-            <div class="flex items-center justify-between p-3.5 bg-white">
-              <span class="text-dusty-500 font-medium">Launch Price</span>
-              <span class="font-extrabold text-celadon-800 text-sm">₹299 <span class="line-through text-dusty-400 font-normal text-xs ml-1">₹599</span> <span class="text-celadon-700 text-xs font-bold">(50% OFF)</span></span>
+            <div class="p-3 bg-[#f8fbff] border-2 border-black rounded-xl flex items-center justify-between">
+              <span class="font-bold text-black flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-600"></i> Chapter 4: Automated Pricing & Delivery Systems</span>
+              <span class="text-gray-500 font-bold">Pages 21–25</span>
             </div>
           </div>
 
-          <div class="mt-6 flex items-center gap-3">
-            <button onclick="openCheckoutModal()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer">
-              <span>Buy Now for ₹299</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          <div class="mt-8 flex flex-col sm:flex-row items-center gap-3">
+            <button onclick="openCheckoutModal()" class="slush-btn-primary w-full sm:w-auto px-7 py-3.5 text-xs font-black uppercase tracking-wider gap-2">
+              <span>Get Instant Access — ₹299</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
-            <span class="text-xs text-dusty-500 flex items-center gap-1">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-celadon-700"></i>
-              <span>Instant Download Guarantee</span>
+            <span class="text-xs text-gray-500 font-bold flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-4 h-4 text-green-600"></i>
+              <span>Automated PDF Delivery Guarantee</span>
             </span>
           </div>
 
@@ -555,145 +537,47 @@
     </section>
 
     <!-- ========================================================================
-         STUDENT REVIEWS (CampusShare Verified Social Proof)
-         ======================================================================== -->
-    <section id="reviews" class="py-16 bg-white border-t border-dusty-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-50 border border-celadon-200 text-celadon-900 text-xs font-bold mb-3">
-            <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-500"></i>
-            <span>Verified Student Reviews</span>
-          </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-dusty-950 tracking-tight">Real Results From College Learners</h2>
-          <p class="text-sm text-dusty-600 mt-2">Here is how students across engineering, commerce, and arts colleges are using these exact frameworks.</p>
+       FAQ ACCORDION (Slush High-Contrast Cards)
+       ======================================================================== -->
+    <section id="faq" class="py-16 max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <div class="slush-badge inline-flex items-center gap-1.5 px-3 py-1 bg-slush-yellow text-black mb-3">
+          <span>❓ GOT QUESTIONS?</span>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Review 1 -->
-          <div class="bg-stone-50/70 border border-dusty-200/90 rounded-2xl p-6 shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-1 text-amber-500 mb-3">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-dusty-700 leading-relaxed mb-4">
-                "I was skeptical because most online AI courses charge ₹2,000+ for theory. This 25-page playbook is pure action. I used the Blueprint 2 carousel prompts and landed my first social media client for ₹1,800 within 4 days."
-              </p>
-            </div>
-            <div class="pt-4 border-t border-dusty-200 flex items-center justify-between text-xs">
-              <div>
-                <strong class="block text-dusty-950 font-bold">Karthik S.</strong>
-                <span class="text-dusty-500 text-[11px]">B.Tech CSE, 3rd Year</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-celadon-100 text-celadon-800 text-[10px] font-bold">Verified Buyer</span>
-            </div>
-          </div>
-
-          <!-- Review 2 -->
-          <div class="bg-stone-50/70 border border-dusty-200/90 rounded-2xl p-6 shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-1 text-amber-500 mb-3">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-dusty-700 leading-relaxed mb-4">
-                "The cold DM templates alone in Chapter 4 paid for this book 10 times over. Getting responses from local businesses used to be impossible, but the hook scripts actually make founders reply on LinkedIn."
-              </p>
-            </div>
-            <div class="pt-4 border-t border-dusty-200 flex items-center justify-between text-xs">
-              <div>
-                <strong class="block text-dusty-950 font-bold">Priya Mohan</strong>
-                <span class="text-dusty-500 text-[11px]">B.Com Student, Chennai</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-celadon-100 text-celadon-800 text-[10px] font-bold">Verified Buyer</span>
-            </div>
-          </div>
-
-          <!-- Review 3 -->
-          <div class="bg-stone-50/70 border border-dusty-200/90 rounded-2xl p-6 shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-1 text-amber-500 mb-3">
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
-              </div>
-              <p class="text-xs sm:text-sm text-dusty-700 leading-relaxed mb-4">
-                "Instant UPI checkout worked smoothly and the PDF opened right on my phone. Very clean presentation, practical prompt chains, and no complicated coding jargon. Highly recommend for any college student."
-              </p>
-            </div>
-            <div class="pt-4 border-t border-dusty-200 flex items-center justify-between text-xs">
-              <div>
-                <strong class="block text-dusty-950 font-bold">Aditya V.</strong>
-                <span class="text-dusty-500 text-[11px]">VIT Vellore</span>
-              </div>
-              <span class="px-2 py-0.5 rounded bg-celadon-100 text-celadon-800 text-[10px] font-bold">Verified Buyer</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         FAQ SECTION (CampusShare Clean Accordion)
-         ======================================================================== -->
-    <section id="faq" class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-50 border border-celadon-200 text-celadon-900 text-xs font-bold mb-3">
-          <i data-lucide="help-circle" class="w-3.5 h-3.5 text-celadon-700"></i>
-          <span>Frequently Asked Questions</span>
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-dusty-950 tracking-tight">Plain-Language Answers</h2>
+        <h2 class="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
+          Frequently Asked Questions
+        </h2>
       </div>
 
-      <div class="space-y-3.5">
+      <div class="space-y-4">
         
-        <details class="group bg-white border border-dusty-200/90 rounded-2xl p-5 shadow-xs [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base text-dusty-950">
-            <span>Do I need paid subscriptions like ChatGPT Plus?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-dusty-500 transition-transform group-open:rotate-180"></i>
+        <details class="group slush-card p-5 bg-white [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-black text-sm sm:text-base text-black">
+            <span>Do I need to pay for ChatGPT Plus or Midjourney?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-black transition-transform group-open:rotate-180"></i>
           </summary>
-          <p class="text-xs sm:text-sm text-dusty-600 mt-3 leading-relaxed">
-            No! All 5 blueprints are crafted specifically to work with the 100% free tiers of ChatGPT, Claude, Canva, and Perplexity. You do not need to spend any money on paid AI tools to start earning.
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 font-medium leading-relaxed">
+            No! Every single blueprint is designed around the 100% free versions of ChatGPT, Claude, Canva, and Perplexity. You do not need to spend any money on tool subscriptions.
           </p>
         </details>
 
-        <details class="group bg-white border border-dusty-200/90 rounded-2xl p-5 shadow-xs [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base text-dusty-950">
-            <span>How will I receive the playbook after paying ₹299?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-dusty-500 transition-transform group-open:rotate-180"></i>
+        <details class="group slush-card p-5 bg-white [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-black text-sm sm:text-base text-black">
+            <span>How is the playbook delivered?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-black transition-transform group-open:rotate-180"></i>
           </summary>
-          <p class="text-xs sm:text-sm text-dusty-600 mt-3 leading-relaxed">
-            Delivery is 100% automated! The moment your payment finishes on Razorpay, the PDF download starts automatically on your phone or PC, and a permanent direct download link is also shown on your screen.
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 font-medium leading-relaxed">
+            Instant delivery! The second your Razorpay UPI payment is confirmed, the full high-resolution PDF automatically downloads to your device, and a direct download link is also shown on screen.
           </p>
         </details>
 
-        <details class="group bg-white border border-dusty-200/90 rounded-2xl p-5 shadow-xs [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base text-dusty-950">
-            <span>Can I do this if I don't have a laptop (only mobile phone)?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-dusty-500 transition-transform group-open:rotate-180"></i>
+        <details class="group slush-card p-5 bg-white [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-black text-sm sm:text-base text-black">
+            <span>Can I do this from a smartphone?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-black transition-transform group-open:rotate-180"></i>
           </summary>
-          <p class="text-xs sm:text-sm text-dusty-600 mt-3 leading-relaxed">
-            Yes! Blueprints 1, 2, and 4 (SEO summaries, social graphics, and client outreach) can be run entirely using mobile apps (ChatGPT app, Canva mobile, and LinkedIn mobile).
-          </p>
-        </details>
-
-        <details class="group bg-white border border-dusty-200/90 rounded-2xl p-5 shadow-xs [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base text-dusty-950">
-            <span>Is the payment secure?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-dusty-500 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <p class="text-xs sm:text-sm text-dusty-600 mt-3 leading-relaxed">
-            Yes. All transactions are securely processed by Razorpay using 256-bit bank-grade SSL encryption. We support all major UPI apps (Google Pay, PhonePe, Paytm, CRED), NetBanking, and Debit/Credit cards.
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 font-medium leading-relaxed">
+            Yes! Blueprints 1, 2, and 4 (SEO articles, Instagram carousels, and client outreach) can be run completely from the ChatGPT, Canva, and LinkedIn mobile apps.
           </p>
         </details>
 
@@ -701,105 +585,90 @@
     </section>
 
     <!-- ========================================================================
-         FINAL HIGH-CONVERSION CTA SECTION
-         ======================================================================== -->
-    <section class="py-16 bg-gradient-to-b from-stone-50 via-celadon-50/60 to-white border-t border-dusty-200/80 text-center">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="bg-white border border-celadon-200 rounded-3xl p-8 sm:p-14 shadow-xs">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-celadon-100 text-celadon-900 text-xs font-bold mb-4">
-            <i data-lucide="zap" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>Limited 50% Launch Window</span>
-          </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-dusty-950 tracking-tight">Ready to Start Your AI Freelance Side Hustle?</h2>
-          <p class="text-sm sm:text-base text-dusty-600 max-w-xl mx-auto mt-3 mb-8 leading-relaxed">
-            Download your copy today for only ₹299. Get all 5 actionable micro-services, prompt formulas, and client scripts delivered immediately.
+       SLUSH BOTTOM CTA RIBBON
+       ======================================================================== -->
+    <section class="py-16 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto slush-card bg-slush-blue text-white p-8 sm:p-14 text-center relative overflow-hidden">
+        
+        <div class="relative z-10">
+          <span class="slush-badge bg-slush-yellow text-black px-3.5 py-1 mb-4 inline-block">LAUNCH WINDOW ACTIVE</span>
+          <h2 class="text-3xl sm:text-6xl font-black text-white tracking-tight uppercase">
+            Start Your Side Hustle Today
+          </h2>
+          <p class="text-sm sm:text-lg text-slush-ice max-w-xl mx-auto mt-3 mb-8 font-medium">
+            Join hundreds of college students turning free AI tools into real monthly income. Just ₹299 for instant lifetime access.
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button onclick="openCheckoutModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-sm shadow-xs transition-colors cursor-pointer">
-              <i data-lucide="lock" class="w-4 h-4"></i>
-              <span>Get Instant Access — ₹299</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-            </button>
-            <button onclick="openPreviewModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-dusty-200 hover:bg-dusty-50 text-dusty-800 font-semibold text-sm shadow-xs transition-colors cursor-pointer">
-              <span>Read Sample Pages</span>
-            </button>
-          </div>
-          <p class="text-[11px] text-dusty-400 mt-4 flex items-center justify-center gap-2">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-celadon-700"></i>
-            <span>256-bit SSL Encrypted • Powered by Razorpay UPI • Instant PDF Delivery</span>
-          </p>
+          <button onclick="openCheckoutModal()" class="slush-btn-lime px-8 py-4 text-sm sm:text-base uppercase tracking-wider font-black gap-2">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+            <span>Unlock For ₹299 Via UPI</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
         </div>
+
       </div>
     </section>
 
   </main>
 
   <!-- ========================================================================
-       CLEAN FOOTER (CampusShare Style)
+       FOOTER
        ======================================================================== -->
-  <footer class="border-t border-dusty-200 bg-white py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-dusty-500">
+  <footer class="border-t-2 border-black bg-white py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-gray-600">
       <div class="flex items-center gap-2">
-        <div class="h-6 w-6 rounded-lg bg-celadon-700 text-white flex items-center justify-center">
-          <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-        </div>
-        <span class="font-bold text-dusty-900">ReadNovaHub</span>
-        <span>• © 2026 All Rights Reserved</span>
+        <span class="font-black text-black">ReadNovaHub</span>
+        <span>• © 2026 Official Student Publication</span>
       </div>
       <div class="flex items-center gap-4">
-        <a href="#curriculum" class="hover:text-dusty-950 transition-colors">Curriculum</a>
-        <a href="#simulator" class="hover:text-dusty-950 transition-colors">Calculator</a>
-        <a href="#reviews" class="hover:text-dusty-950 transition-colors">Reviews</a>
-        <a href="/admin" class="hover:text-celadon-700 font-semibold transition-colors">Admin Portal</a>
+        <a href="#blueprints" class="hover:text-black">Blueprints</a>
+        <a href="#calculator" class="hover:text-black">Calculator</a>
+        <a href="/admin" class="hover:text-slush-blue">Admin Console</a>
       </div>
     </div>
   </footer>
 
   <!-- ========================================================================
-       MOBILE STICKY CONVERSION BAR (CampusShare Floating Action)
+       MOBILE STICKY CONVERSION BAR
        ======================================================================== -->
-  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-dusty-200/90 p-3 sm:hidden shadow-lg transition-transform duration-300">
+  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t-2 border-black p-3 sm:hidden shadow-lg transition-transform duration-300">
     <div class="flex items-center justify-between gap-3">
       <div>
-        <span id="sticky-title" class="text-xs font-bold text-dusty-900 block truncate max-w-[170px]">The Student AI Playbook</span>
-        <span class="text-xs text-celadon-700 font-extrabold">₹299 <span class="line-through text-dusty-400 font-normal text-[10px]">₹599</span></span>
+        <span id="sticky-title" class="text-xs font-black text-black block truncate max-w-[170px]">The Student AI Playbook</span>
+        <span class="text-xs text-slush-blue font-black">₹299 <span class="line-through text-gray-400 font-normal text-[10px]">₹599</span></span>
       </div>
-      <button onclick="openCheckoutModal()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-xs shadow-xs active:scale-[0.98] cursor-pointer">
-        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-        <span>Unlock Now</span>
+      <button onclick="openCheckoutModal()" class="slush-btn-lime px-4 py-2 text-xs font-black uppercase tracking-wider">
+        <span>Unlock ₹299</span>
       </button>
     </div>
   </div>
 
   <!-- ========================================================================
-       MODAL: RAZORPAY CHECKOUT (Integrated with app.js)
+       MODAL: RAZORPAY CHECKOUT (Tactile Slush Style)
        ======================================================================== -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-dusty-950/60 backdrop-blur-sm p-4 overflow-y-auto">
-    <div class="bg-white border border-dusty-200 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-8">
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="slush-card max-w-md w-full p-6 sm:p-8 bg-white relative my-8">
       
-      <!-- Close button -->
-      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-dusty-400 hover:text-dusty-900 p-1 rounded-lg hover:bg-dusty-100 transition-colors cursor-pointer">
+      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-gray-500 hover:text-black p-1 rounded-full hover:bg-black/5 transition-colors cursor-pointer">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <!-- Step 1: Form -->
       <div id="checkout-step-form">
         <div class="flex items-center gap-2.5 mb-5">
-          <div class="w-9 h-9 rounded-xl bg-celadon-100 text-celadon-800 flex items-center justify-center">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          <div class="w-9 h-9 rounded-full bg-slush-blue text-white flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000]">
+            <i data-lucide="lock" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="font-extrabold text-lg text-dusty-950">Complete Your Order</h3>
-            <span class="text-xs text-dusty-500">256-bit SSL Secure Checkout</span>
+            <h3 class="font-black text-lg text-black uppercase">Instant UPI Checkout</h3>
+            <span class="text-xs text-gray-500 font-medium">Razorpay SSL Encrypted</span>
           </div>
         </div>
 
-        <div class="bg-stone-50 border border-dusty-200/90 rounded-2xl p-4 mb-5">
+        <div class="bg-slush-ice border-2 border-black rounded-xl p-3.5 mb-5">
           <div class="flex items-center justify-between text-xs mb-1">
-            <span id="modal-book-title" class="font-bold text-dusty-900 truncate max-w-[220px]">The Student AI Side Hustle Playbook</span>
-            <span class="font-extrabold text-celadon-800 text-sm">₹299</span>
+            <span id="modal-book-title" class="font-bold text-black truncate max-w-[220px]">The Student AI Side Hustle Playbook</span>
+            <span class="font-black text-black text-sm">₹299</span>
           </div>
-          <div class="flex items-center justify-between text-[11px] text-dusty-500">
+          <div class="flex items-center justify-between text-[11px] text-gray-600 font-medium">
             <span>Special 50% Launch Deal</span>
             <span class="line-through">₹599</span>
           </div>
@@ -807,76 +676,74 @@
 
         <form id="checkout-form" onsubmit="handlePaymentSubmit(event)" class="space-y-3.5">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-dusty-700 mb-1.5">Full Name</label>
-            <input type="text" id="cust-name" required placeholder="e.g. Rahul Sharma" class="w-full bg-white border border-dusty-300 rounded-xl px-3.5 py-2.5 text-sm text-dusty-900 focus:border-celadon-700 focus:ring-1 focus:ring-celadon-700 focus:outline-none">
+            <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Your Full Name</label>
+            <input type="text" id="cust-name" required placeholder="e.g. Rahul Sharma" class="w-full bg-white border-2 border-black rounded-xl px-3.5 py-2.5 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-slush-blue">
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-dusty-700 mb-1.5">Email Address (For PDF Delivery)</label>
-            <input type="email" id="cust-email" required placeholder="name@gmail.com" class="w-full bg-white border border-dusty-300 rounded-xl px-3.5 py-2.5 text-sm text-dusty-900 focus:border-celadon-700 focus:ring-1 focus:ring-celadon-700 focus:outline-none">
+            <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Email (For Automated PDF Delivery)</label>
+            <input type="email" id="cust-email" required placeholder="name@gmail.com" class="w-full bg-white border-2 border-black rounded-xl px-3.5 py-2.5 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-slush-blue">
           </div>
 
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-dusty-700 mb-1.5">Phone (For UPI Verification)</label>
-            <input type="tel" id="cust-phone" required placeholder="9876543210" class="w-full bg-white border border-dusty-300 rounded-xl px-3.5 py-2.5 text-sm text-dusty-900 focus:border-celadon-700 focus:ring-1 focus:ring-celadon-700 focus:outline-none">
+            <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Phone Number (UPI Verification)</label>
+            <input type="tel" id="cust-phone" required placeholder="9876543210" class="w-full bg-white border-2 border-black rounded-xl px-3.5 py-2.5 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-slush-blue">
           </div>
 
-          <button type="submit" id="pay-button" class="w-full mt-4 inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-sm shadow-xs transition-colors cursor-pointer">
-            <i data-lucide="lock" class="w-4 h-4"></i>
-            <span>Pay ₹299 via Razorpay UPI / Cards</span>
+          <button type="submit" id="pay-button" class="slush-btn-primary w-full py-3.5 text-xs font-black uppercase tracking-wider mt-4">
+            <i data-lucide="lock" class="w-4 h-4 mr-1"></i>
+            <span>Pay ₹299 (GPay, PhonePe, Cards)</span>
           </button>
         </form>
 
-        <div class="mt-4 pt-4 border-t border-dusty-100 flex items-center justify-center gap-3 text-[11px] text-dusty-500">
-          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-celadon-700"></i> Instant PDF</span>
-          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-celadon-700"></i> UPI / GPay</span>
-          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-celadon-700"></i> Lifetime Access</span>
+        <div class="mt-4 pt-4 border-t-2 border-black/10 flex items-center justify-center gap-3 text-[11px] font-bold text-gray-600">
+          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-green-600"></i> Instant PDF</span>
+          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-green-600"></i> UPI / Cards</span>
+          <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-green-600"></i> Lifetime Access</span>
         </div>
       </div>
 
-      <!-- Step 2: Success -->
+      <!-- Success Step -->
       <div id="checkout-step-success" class="hidden text-center py-4">
-        <div class="w-14 h-14 rounded-2xl bg-celadon-100 text-celadon-700 flex items-center justify-center mx-auto mb-4">
-          <i data-lucide="check-circle" class="w-8 h-8"></i>
+        <div class="w-14 h-14 rounded-full bg-slush-lime text-black flex items-center justify-center mx-auto mb-4 border-2 border-black shadow-[3px_3px_0px_0px_#000]">
+          <i data-lucide="check" class="w-8 h-8"></i>
         </div>
-        <h3 class="text-2xl font-extrabold text-dusty-950 mb-1">Payment Successful!</h3>
-        <p class="text-xs text-dusty-600 mb-4">Order ID: <span id="success-order-id" class="font-mono font-bold text-dusty-800"></span></p>
+        <h3 class="text-2xl font-black text-black uppercase mb-1">Payment Successful!</h3>
+        <p class="text-xs text-gray-600 mb-4 font-mono font-bold">Order ID: <span id="success-order-id"></span></p>
 
-        <p class="text-xs text-dusty-600 mb-6">
-          Your copy has been delivered! A confirmation has been sent to <span id="success-customer-email" class="font-bold text-dusty-800"></span>.
+        <p class="text-xs text-gray-700 font-medium mb-6">
+          Your playbook is ready! A copy has also been sent to <span id="success-customer-email" class="font-bold text-black"></span>.
         </p>
 
-        <a id="download-link" href="/downloads/The-Student-AI-Side-Hustle-Playbook.pdf" download="The-Student-AI-Side-Hustle-Playbook.pdf" class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-sm shadow-xs transition-colors">
+        <a id="download-link" href="/downloads/The-Student-AI-Side-Hustle-Playbook.pdf" download="The-Student-AI-Side-Hustle-Playbook.pdf" class="slush-btn-primary w-full py-3.5 text-xs font-black uppercase tracking-wider gap-2">
           <i data-lucide="download" class="w-4 h-4"></i>
           <span>Download PDF Playbook Now</span>
         </a>
 
-        <button onclick="closeCheckoutModal()" class="mt-4 text-xs font-semibold text-dusty-500 hover:text-dusty-900 cursor-pointer">Close Window</button>
+        <button onclick="closeCheckoutModal()" class="mt-4 text-xs font-bold text-gray-500 hover:text-black cursor-pointer">Close Window</button>
       </div>
 
     </div>
   </div>
 
   <!-- ========================================================================
-       MODAL: SAMPLE READER (Integrated with app.js)
+       MODAL: SAMPLE READER
        ======================================================================== -->
-  <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-dusty-950/60 backdrop-blur-sm p-4 overflow-y-auto">
-    <div class="bg-white border border-dusty-200 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[85vh] flex flex-col">
+  <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="slush-card max-w-2xl w-full p-6 sm:p-8 bg-white relative my-8 max-h-[85vh] flex flex-col">
       
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-4 border-b border-dusty-200">
+      <div class="flex items-center justify-between pb-4 border-b-2 border-black">
         <div>
-          <span class="text-[11px] font-bold text-celadon-700 uppercase tracking-wider block">Free Sample Preview</span>
-          <h3 id="reader-heading" class="font-extrabold text-lg text-dusty-950">Chapter 1: The AI Freelancer Mindset</h3>
+          <span class="slush-badge bg-slush-lime text-black px-2 py-0.5 text-[9px] mb-1 inline-block">Free Sample</span>
+          <h3 id="reader-heading" class="font-black text-lg text-black uppercase">Chapter 1: The AI Freelancer Mindset</h3>
         </div>
-        <button onclick="closePreviewModal()" class="text-dusty-400 hover:text-dusty-900 p-1.5 rounded-lg hover:bg-dusty-100 transition-colors cursor-pointer">
+        <button onclick="closePreviewModal()" class="text-gray-500 hover:text-black p-1 rounded-full hover:bg-black/5 transition-colors cursor-pointer">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Modal Body (Scrollable) -->
-      <div id="reader-body" class="flex-1 overflow-y-auto py-6 pr-2 text-xs sm:text-sm text-dusty-700 leading-relaxed space-y-4">
-        <p class="font-semibold text-dusty-900">
+      <div id="reader-body" class="flex-1 overflow-y-auto py-6 pr-2 text-xs sm:text-sm text-gray-800 leading-relaxed space-y-4 font-medium">
+        <p class="font-bold text-black">
           Welcome to Chapter 1 of The Student AI Side Hustle Playbook.
         </p>
         <p>
@@ -885,9 +752,9 @@
         <p>
           Meanwhile, businesses, founders, and content creators are desperate for fast, dependable micro-services—and they are actively paying ₹1,000 to ₹4,000 for work that takes an AI-empowered student less than 30 minutes to complete.
         </p>
-        <div class="p-4 rounded-xl bg-celadon-50 border border-celadon-200 my-4">
-          <strong class="block text-xs font-bold text-celadon-950 uppercase tracking-wider mb-1">Core Principle:</strong>
-          <p class="text-xs text-celadon-900">
+        <div class="p-4 rounded-xl bg-slush-ice border-2 border-black my-4">
+          <strong class="block text-xs font-black uppercase tracking-wider mb-1 text-black">The Core Mindset Shift:</strong>
+          <p class="text-xs text-gray-800">
             Clients do not pay for AI. Clients pay for completed outcomes that save them time.
           </p>
         </div>
@@ -896,12 +763,10 @@
         </p>
       </div>
 
-      <!-- Modal Footer -->
-      <div class="pt-4 border-t border-dusty-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span class="text-xs text-dusty-500">Previewing Chapter 1 of 5 (23 pages remaining)</span>
-        <button onclick="closePreviewModal(); openCheckoutModal();" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-celadon-700 hover:bg-celadon-800 text-white font-bold text-xs shadow-xs cursor-pointer">
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-          <span>Unlock Full 25-Page Playbook (₹299)</span>
+      <div class="pt-4 border-t-2 border-black flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-xs text-gray-500 font-bold">Previewing Chapter 1 of 5 (23 pages remaining)</span>
+        <button onclick="closePreviewModal(); openCheckoutModal();" class="slush-btn-primary px-5 py-2.5 text-xs font-black uppercase tracking-wider">
+          <span>Unlock Full 25 Pages (₹299)</span>
         </button>
       </div>
 
@@ -926,19 +791,18 @@
   </div>
 
   <!-- Social Proof Notification Toast -->
-  <div id="social-toast" class="fixed bottom-20 left-4 z-30 hidden bg-white border border-dusty-200 rounded-2xl p-3.5 shadow-lg max-w-xs transition-all duration-300">
+  <div id="social-toast" class="fixed bottom-20 left-4 z-30 hidden slush-card p-3.5 bg-white max-w-xs transition-all duration-300">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-full bg-celadon-100 text-celadon-800 flex items-center justify-center shrink-0">
-        <i data-lucide="check" class="w-4 h-4"></i>
+      <div class="w-8 h-8 rounded-full bg-slush-lime text-black flex items-center justify-center border border-black shrink-0 font-bold">
+        ✓
       </div>
       <div>
-        <strong id="toast-title" class="block text-xs font-bold text-dusty-950">Student in Chennai</strong>
-        <span id="toast-desc" class="text-[11px] text-dusty-500">Just unlocked the Playbook</span>
+        <strong id="toast-title" class="block text-xs font-black text-black">Student in Chennai</strong>
+        <span id="toast-desc" class="text-[11px] text-gray-600 font-medium">Just unlocked the Playbook</span>
       </div>
     </div>
   </div>
 
-  <!-- Initialize Lucide Icons -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       if (window.lucide) {
@@ -947,7 +811,6 @@
     });
   </script>
 
-  <!-- Core App Logic -->
   <script src="/app.js"></script>
 
 </body>

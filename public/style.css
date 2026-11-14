@@ -1,48 +1,256 @@
 /* ==========================================================================
-   READNOVAHUB - CAMPUSSHARE-INSPIRED REFINED DESIGN SYSTEM
-   Human-crafted, high-trust academic & makerspace aesthetic
+   SLUSH-INSPIRED HIGH-ENERGY DESIGN SYSTEM
+   Tactile 3D web3/fintech aesthetic with rich organic animations
    ========================================================================== */
 
 :root {
-  --color-brand-primary: #15803d;     /* Emerald 700 */
-  --color-brand-dark: #14532d;        /* Emerald 900 */
-  --color-brand-soft: #ecfdf5;        /* Emerald 50 */
-  --color-brand-border: #a7f3d0;      /* Emerald 200 */
-  --color-surface-card: #ffffff;
-  --color-surface-bg: #f8fafc;
-  --color-text-main: #0f172a;         /* Slate 900 */
-  --color-text-muted: #475569;        /* Slate 600 */
-  --color-text-light: #94a3b8;        /* Slate 400 */
-  --color-border-subtle: #e2e8f0;     /* Slate 200 */
+  --color-slush-blue: #2563eb;
+  --color-slush-ice: #dbeafe;
+  --color-slush-glacier: #eff6ff;
+  --color-slush-yellow: #fde047;
+  --color-slush-lime: #bef264;
+  --color-slush-violet: #c084fc;
+  --color-slush-dark: #090d16;
 }
 
-/* Base resets & typography */
 html {
   scroll-behavior: smooth;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: var(--color-text-main);
-  background-color: #fafaf9;
+  background-color: #f0f7ff;
+  color: var(--color-slush-dark);
 }
 
-/* Subtle architectural dot grid */
-.bg-grid-subtle {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
+/* --------------------------------------------------------------------------
+   SLUSH TACTILE NEO-BRUTALIST SHADOWS & BUTTONS
+   -------------------------------------------------------------------------- */
+.slush-card {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  border-radius: 20px;
+  background: #ffffff;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 3D Book Presentation (Clean & Realistic, Human Crafted) */
+.slush-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.slush-btn-primary {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 800;
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slush-btn-primary:hover {
+  background: #1d4ed8;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.slush-btn-primary:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+.slush-btn-lime {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  background: #bef264;
+  color: #000000;
+  border-radius: 9999px;
+  font-weight: 800;
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slush-btn-lime:hover {
+  background: #a3e635;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.slush-btn-lime:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+.slush-btn-white {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slush-btn-white:hover {
+  background: #f8fafc;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.slush-btn-white:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+.slush-badge {
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px 0px #000000;
+  border-radius: 9999px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   KEYFRAME ANIMATIONS (MORE ANIMATION!)
+   -------------------------------------------------------------------------- */
+
+/* 1. Floating Stickers */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(calc(var(--rot, 0deg) + 2deg));
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(10px) rotate(calc(var(--rot, 0deg) - 2deg));
+  }
+}
+
+.animate-float-1 {
+  --rot: -4deg;
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  --rot: 6deg;
+  animation: float-reverse 4.5s ease-in-out infinite 0.5s;
+}
+
+.animate-float-3 {
+  --rot: -8deg;
+  animation: float-gentle 5s ease-in-out infinite 1s;
+}
+
+.animate-float-4 {
+  --rot: 5deg;
+  animation: float-reverse 3.8s ease-in-out infinite 1.5s;
+}
+
+/* 2. Organic Morphing Fluid Blob in Background */
+@keyframes morph-blob {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: scale(1.08) rotate(120deg);
+  }
+  66% {
+    border-radius: 50% 60% 30% 60% / 30% 40% 70% 60%;
+    transform: scale(0.95) rotate(240deg);
+  }
+}
+
+.slush-blob {
+  background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #6366f1 100%);
+  animation: morph-blob 12s ease-in-out infinite;
+  filter: blur(40px);
+  opacity: 0.65;
+}
+
+/* 3. Infinite Marquee Banner (Slush Signature) */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* 4. Pulse Badge Glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* 5. Shimmer Light Sweep */
+@keyframes shine {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 3s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   SLUSH 3D BOOK PHYSICS
+   -------------------------------------------------------------------------- */
 .book-container {
   perspective: 1200px;
-  width: 260px;
-  height: 380px;
+  width: 270px;
+  height: 390px;
   position: relative;
   margin: 0 auto;
 }
 
 @media (min-width: 640px) {
   .book-container {
-    width: 290px;
-    height: 420px;
+    width: 300px;
+    height: 430px;
   }
 }
 
@@ -51,118 +259,85 @@ html {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateY(-18deg) rotateX(6deg);
+  transform: rotateY(-16deg) rotateX(6deg);
   transition: transform 0.25s ease-out;
-  will-change: transform;
+  animation: float-gentle 6s ease-in-out infinite;
 }
 
 .book-front {
   position: absolute;
   inset: 0;
-  border-radius: 6px 14px 14px 6px;
-  transform: translateZ(14px);
+  border-radius: 8px 18px 18px 8px;
+  transform: translateZ(16px);
+  border: 2px solid #000000;
   box-shadow: 
-    -2px 0 6px rgba(0, 0, 0, 0.15),
-    10px 16px 30px rgba(15, 23, 42, 0.22),
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    -3px 0 8px rgba(0, 0, 0, 0.2),
+    8px 14px 28px rgba(9, 13, 22, 0.25);
   overflow: hidden;
-  background: linear-gradient(145deg, #1e1b4b, #312e81, #0f172a);
+  background: linear-gradient(135deg, #1e1b4b 0%, #2563eb 60%, #0f172a 100%);
 }
 
 .book-spine {
   position: absolute;
   left: 0;
   top: 0;
-  width: 28px;
+  width: 32px;
   height: 100%;
-  transform: translateX(-14px) rotateY(-90deg);
-  border-radius: 4px 0 0 4px;
+  transform: translateX(-16px) rotateY(-90deg);
+  border-radius: 6px 0 0 6px;
   background: #1e1b4b;
-  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.5);
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  border-left: 2px solid #000000;
 }
 
 .book-shadow {
   position: absolute;
-  bottom: -28px;
-  left: 6%;
-  width: 88%;
-  height: 28px;
-  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.28) 0%, rgba(15, 23, 42, 0) 70%);
-  filter: blur(8px);
-  transform: rotateX(75deg);
+  bottom: -32px;
+  left: 5%;
+  width: 90%;
+  height: 30px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(10px);
+  transform: rotateX(80deg);
   pointer-events: none;
 }
 
-/* Custom Clean Range Slider */
+/* --------------------------------------------------------------------------
+   SLUSH TACTILE RANGE SLIDER
+   -------------------------------------------------------------------------- */
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
-  height: 8px;
+  height: 12px;
   border-radius: 9999px;
   background: #e2e8f0;
+  border: 2px solid #000000;
   outline: none;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: #15803d;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  background: #bef264;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px 0px #000000;
   cursor: pointer;
-  transition: transform 0.15s, background 0.15s;
+  transition: transform 0.1s, background 0.1s;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  background: #166534;
+  transform: scale(1.2);
+  background: #a3e635;
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #15803d;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  cursor: pointer;
-}
-
-/* Subtle Shimmer Effect for Launch Badges */
-@keyframes subtle-shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
-}
-
-.animate-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.animate-shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  animation: subtle-shimmer 3.5s infinite;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+/* Slush grid background */
+.slush-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
