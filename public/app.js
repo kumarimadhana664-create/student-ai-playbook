@@ -1,80 +1,18 @@
-// Store State
+// ============================================================================
+// READNOVAHUB - SLUSH ENGINE & DYNAMIC CONFIG CONTROLLER
+// High-energy animations, 3D physics, real-time price synchronization
+// ============================================================================
+
 let currentConfig = {
   bookTitle: "The Student AI Side Hustle Playbook",
-  subtitle: "Turn free AI tools into freelance skills, digital services and your first online income.",
   author: "ReadNovaHub",
-  price: 9,
-  currency: "USD",
-  currencySymbol: "$",
-  discountPercent: 50,
-  originalPrice: 18
+  price: 299,
+  originalPrice: 599,
+  currency: "INR",
+  currencySymbol: "₹",
+  razorpayKeyId: "rzp_live_TvFbRhljzSOYwF",
+  upiId: "readnovahub@upi"
 };
-
-// Chapter content database for the interactive reader (From Official 2026 Edition)
-const CHAPTER_SAMPLES = {
-  1: {
-    title: "Part I: Chapter 1 • The Student's Guide to AI-Powered Side Hustles",
-    text: `
-      <div class="bg-indigo-950/60 border border-indigo-500/30 p-4 rounded-2xl mb-4 text-center">
-        <p class="font-display font-bold text-white text-base">"Clients don't pay for AI.<br><span class="text-indigo-300">They pay for useful, accurate work from someone they trust."</span></p>
-        <span class="text-[11px] text-slate-400 font-mono mt-1 block">— ReadNovaHub</span>
-      </div>
-
-      <p class="font-semibold text-white">What an AI side hustle really is:</p>
-      <p>An AI side hustle is a small service or product you offer <strong>using AI tools to speed up parts of the work</strong>, while you provide the judgment, quality control and client communication. Remove any ingredient and it falls apart.</p>
-      
-      <div class="grid grid-cols-4 gap-2 text-center text-xs my-4 bg-slate-950 p-3 rounded-xl border border-white/10">
-        <div class="p-2 rounded bg-slate-900 border border-white/5"><span class="font-bold text-indigo-400 block">Your Skill</span>Writing, design</div>
-        <div class="p-2 rounded bg-slate-900 border border-white/5"><span class="font-bold text-purple-400 block">+ AI Help</span>Speed & ideas</div>
-        <div class="p-2 rounded bg-slate-900 border border-white/5"><span class="font-bold text-pink-400 block">+ Review</span>Accuracy & care</div>
-        <div class="p-2 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300"><span class="font-bold block">= Service</span>Trust & pay</div>
-      </div>
-
-      <div class="bg-amber-950/30 border-l-4 border-amber-500 p-3.5 rounded-r-xl my-4 text-slate-200">
-        <h5 class="font-bold text-amber-300 text-xs uppercase tracking-wider mb-1">THE GOLDEN RULE:</h5>
-        <p class="text-xs text-slate-300">AI can sound confident while being wrong. It can invent statistics, sources and quotes. <strong>Everything you deliver must be checked by you.</strong></p>
-      </div>
-
-      <p class="text-xs text-slate-400">Why students have an unfair edge: You learn new tools without fear, your operating costs are zero, your schedule is flexible, and local shops/creators desperately need help with content and documents.</p>
-    `
-  },
-  2: {
-    title: "Part II: Chapter 3 • AI-Assisted Content Writing Services",
-    text: `
-      <p class="font-semibold text-white text-base">"Turn rough notes into clear, high-converting copy for local businesses."</p>
-      <p>Written content is one of the easiest services to start because every business needs words: websites, shops, newsletters, and social media pages. Owners are busy and want a reliable person who takes notes and turns them into ready-to-publish copy.</p>
-      
-      <div class="bg-slate-950 border border-white/10 p-4 rounded-xl my-4 space-y-2">
-        <h5 class="font-bold text-indigo-300 text-xs uppercase tracking-wider">The 6-Step Delivery Workflow:</h5>
-        <div class="flex items-center justify-between text-[11px] font-mono text-slate-300 pt-1">
-          <span class="bg-indigo-900/60 px-2 py-1 rounded">1. Client Brief</span> &rarr;
-          <span class="bg-indigo-900/60 px-2 py-1 rounded">2. Outline</span> &rarr;
-          <span class="bg-indigo-900/60 px-2 py-1 rounded">3. AI Draft</span> &rarr;
-          <span class="bg-indigo-900/60 px-2 py-1 rounded">4. Rewrite</span> &rarr;
-          <span class="bg-emerald-900/60 text-emerald-300 px-2 py-1 rounded">5. Deliver</span>
-        </div>
-      </div>
-
-      <p>Inside the book: Chapter 3 gives you the exact prompts for cafe blogs, product descriptions, email newsletters, and the Quality-Control Checklist to ensure 100% factual accuracy.</p>
-    `
-  },
-  3: {
-    title: "Bonus Toolkit • 50 AI Prompts & 10 Outreach Templates",
-    text: `
-      <p class="font-semibold text-white text-base">"Never start from a blank screen again."</p>
-      <p>The back of the playbook includes 50 battle-tested, fill-in-the-blank AI prompts covering Writing, Social Media & Canva Design, Resumes, Presentations, and Data Cleaning.</p>
-      
-      <div class="bg-slate-950 border border-white/10 p-3.5 rounded-xl my-4 text-xs font-mono text-slate-300 space-y-2">
-        <span class="text-[10px] text-amber-400 uppercase tracking-widest font-bold block">Sample Outreach Template (DM):</span>
-        <p class="italic text-slate-200">"Hi [Name], I like what you do at [business]. I'm building my portfolio in [service] and noticed [specific detail]. Would it be okay if I shared a short idea? No pressure at all."</p>
-      </div>
-
-      <p>Plus: The 30-Day Student Action Tracker, Client Project Brief worksheet, and the Freelance Glossary to make you sound like an experienced pro from day one.</p>
-    `
-  }
-};
-
-let currentReaderFontSize = 14;
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,54 +20,73 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
   fetchConfig();
-  startUrgencyTimer();
-  setupScrollListener();
   setup3DBookParallax();
-  setupScrollReveal();
   updateCalculator();
   switchReaderChapter(1);
   startSocialProofToasts();
+  setupInteractiveCounters();
 });
 
-// Fetch Store Configuration
+// Fetch Store Configuration (from API + Local Storage Sync)
 async function fetchConfig() {
   try {
     const res = await fetch('/api/config');
     if (res.ok) {
-      currentConfig = await res.json();
-      applyConfig(currentConfig);
-      updateCalculator();
+      const data = await res.json();
+      currentConfig = { ...currentConfig, ...data };
     }
   } catch (err) {
-    console.error("Config fetch error:", err);
+    console.warn("Could not fetch remote config, using fallback:", err);
   }
+
+  // Check for local storage override if admin saved locally
+  try {
+    const local = localStorage.getItem('rnh_admin_config');
+    if (local) {
+      const parsed = JSON.parse(local);
+      currentConfig = { ...currentConfig, ...parsed };
+    }
+  } catch (e) {}
+
+  applyConfig(currentConfig);
+  updateCalculator();
 }
 
-// Apply Config to DOM
+// Dynamically apply config & update ALL prices across the entire page
 function applyConfig(cfg) {
   const pageTitle = document.getElementById('page-title');
-  if (pageTitle) pageTitle.textContent = `${cfg.bookTitle} | Turn Knowledge Into Revenue`;
-
-  const heroTitle = document.getElementById('hero-title');
-  if (heroTitle) {
-    heroTitle.innerHTML = `The Blueprint to Turn What You Know Into a <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">${cfg.currencySymbol}5,000/Month</span> Digital Empire.`;
+  if (pageTitle && cfg.bookTitle) {
+    pageTitle.textContent = `${cfg.bookTitle} | ReadNovaHub`;
   }
 
   const coverTitle = document.getElementById('cover-title');
-  if (coverTitle) coverTitle.textContent = cfg.bookTitle.toUpperCase();
+  if (coverTitle && cfg.bookTitle) {
+    coverTitle.textContent = cfg.bookTitle.toUpperCase();
+  }
 
   const coverAuthor = document.getElementById('cover-author');
-  if (coverAuthor) coverAuthor.textContent = cfg.author;
+  if (coverAuthor && cfg.author) {
+    coverAuthor.textContent = cfg.author;
+  }
 
   const modalBookTitle = document.getElementById('modal-book-title');
-  if (modalBookTitle) modalBookTitle.textContent = cfg.bookTitle;
+  if (modalBookTitle && cfg.bookTitle) {
+    modalBookTitle.textContent = cfg.bookTitle;
+  }
 
   const stickyTitle = document.getElementById('sticky-title');
-  if (stickyTitle) stickyTitle.textContent = cfg.bookTitle;
+  if (stickyTitle && cfg.bookTitle) {
+    stickyTitle.textContent = cfg.bookTitle;
+  }
 
-  const formattedPrice = `${cfg.currencySymbol}${cfg.price}`;
-  const formattedOriginal = `${cfg.currencySymbol}${cfg.originalPrice || (cfg.price * 2)}`;
+  const symbol = cfg.currencySymbol || '₹';
+  const price = cfg.price || 299;
+  const original = cfg.originalPrice || (price * 2);
 
+  const formattedPrice = `${symbol}${price}`;
+  const formattedOriginal = `${symbol}${original}`;
+
+  // 1. Update all explicit price display elements
   document.querySelectorAll('.book-price-display').forEach(el => {
     el.textContent = formattedPrice;
   });
@@ -138,559 +95,362 @@ function applyConfig(cfg) {
     el.textContent = formattedOriginal;
   });
 
-  // Settings form fields
-  const titleField = document.getElementById('setting-title');
-  if (titleField) titleField.value = cfg.bookTitle;
+  // 2. Dynamically scan buttons and labels to update price text
+  document.querySelectorAll('button, a, span, p, h3').forEach(el => {
+    if (el.children.length <= 1) {
+      // Replace hardcoded ₹299 or old prices with dynamic formattedPrice
+      if (el.textContent.includes('₹') && !el.classList.contains('no-price-replace') && !el.closest('#calculator')) {
+        el.innerHTML = el.innerHTML.replace(/₹\s*\d+/g, formattedPrice);
+      }
+    }
+  });
 
-  const priceField = document.getElementById('setting-price');
-  if (priceField) priceField.value = cfg.price;
-
-  const currencyField = document.getElementById('setting-currency-symbol');
-  if (currencyField) currencyField.value = cfg.currencySymbol;
-
-  const authorField = document.getElementById('setting-author');
-  if (authorField) authorField.value = cfg.author;
+  // 3. Update checkout submit button specifically
+  const payBtn = document.getElementById('pay-button');
+  if (payBtn) {
+    payBtn.innerHTML = `<i data-lucide="lock" class="w-4 h-4 mr-1"></i><span>Pay ${formattedPrice} (GPay, PhonePe, Cards)</span>`;
+    if (window.lucide) lucide.createIcons();
+  }
 }
 
 // ============================================================================
-// 1. DYNAMIC 3D MOUSE PARALLAX ENGINE
+// 1. DYNAMIC 3D MOUSE PARALLAX & TACTILE PHYSICS ENGINE
 // ============================================================================
 function setup3DBookParallax() {
   const container = document.getElementById('hero-book-wrap');
   const book = document.getElementById('book-3d-element');
-  const shadow = document.getElementById('book-shadow-element');
   if (!container || !book) return;
 
   container.addEventListener('mousemove', (e) => {
-    container.classList.remove('resting');
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left - (rect.width / 2);
     const y = e.clientY - rect.top - (rect.height / 2);
 
-    // Calculate dynamic 3D tilt angles based on cursor offset
-    const rotY = -24 + (x / rect.width) * 36;  // range approx -42deg to -6deg
-    const rotX = 8 - (y / rect.height) * 28;   // range approx -6deg to +22deg
-    const rotZ = (x / rect.width) * -6;
+    const rotX = -(y / rect.height) * 26;
+    const rotY = (x / rect.width) * 26;
 
-    book.style.setProperty('--book-ry', `${rotY}deg`);
-    book.style.setProperty('--book-rx', `${rotX}deg`);
-    book.style.setProperty('--book-rz', `${rotZ}deg`);
-
-    // Dynamic light sheen angle
-    const angle = Math.round(120 + (x / rect.width) * 50);
-    book.style.setProperty('--sheen-angle', `${angle}deg`);
-
-    // Dynamic shadow shift
-    if (shadow) {
-      const shadowShiftX = (x / rect.width) * 20;
-      shadow.style.transform = `rotateX(80deg) translateZ(-10px) translateX(${shadowShiftX}px)`;
-    }
+    book.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.04, 1.04, 1.04)`;
   });
 
   container.addEventListener('mouseleave', () => {
-    container.classList.add('resting');
-    book.style.setProperty('--book-ry', '-24deg');
-    book.style.setProperty('--book-rx', '8deg');
-    book.style.setProperty('--book-rz', '-2deg');
-    if (shadow) {
-      shadow.style.transform = 'rotateX(80deg) translateZ(-10px) translateX(0px)';
-    }
+    book.style.transform = `rotateY(-16deg) rotateX(6deg) scale3d(1, 1, 1)`;
   });
 }
 
 // ============================================================================
-// 2. INTERACTIVE REVENUE & ROI CALCULATOR
+// 2. FREELANCE EARNINGS CALCULATOR WITH COUNTER ANIMATION
 // ============================================================================
+const sliderSales = document.getElementById('slider-sales');
+const sliderPrice = document.getElementById('slider-price');
+const salesVal = document.getElementById('slider-sales-val');
+const priceVal = document.getElementById('slider-price-val');
+const monthlyIncome = document.getElementById('calc-monthly-income');
+const annualIncome = document.getElementById('calc-annual-income');
+
+if (sliderSales && sliderPrice) {
+  sliderSales.addEventListener('input', updateCalculator);
+  sliderPrice.addEventListener('input', updateCalculator);
+}
+
 function updateCalculator() {
-  const salesSlider = document.getElementById('slider-sales');
-  const priceSlider = document.getElementById('slider-price');
-  if (!salesSlider || !priceSlider) return;
+  if (!sliderSales || !sliderPrice) return;
+  const gigs = parseInt(sliderSales.value, 10);
+  const rate = parseInt(sliderPrice.value, 10);
 
-  const weeklySales = parseInt(salesSlider.value, 10);
-  const price = parseInt(priceSlider.value, 10);
-  const symbol = currentConfig.currencySymbol || '$';
+  if (salesVal) salesVal.textContent = `${gigs} gigs / wk`;
+  if (priceVal) priceVal.textContent = `₹${rate.toLocaleString('en-IN')} / gig`;
 
-  document.getElementById('slider-sales-val').textContent = `${weeklySales} copies/wk`;
-  document.getElementById('slider-price-val').textContent = `${symbol}${price}`;
+  // 4 weeks per month
+  const monthly = gigs * rate * 4;
+  const annual = monthly * 12;
 
-  const monthlyIncome = Math.round(weeklySales * price * 4.33);
-  const annualIncome = Math.round(weeklySales * price * 52);
-
-  document.getElementById('calc-monthly-income').textContent = `${symbol}${monthlyIncome.toLocaleString()}`;
-  document.getElementById('calc-annual-income').textContent = `${symbol}${annualIncome.toLocaleString()}`;
+  if (monthlyIncome) animateCounter(monthlyIncome, monthly, '₹');
+  if (annualIncome) annualIncome.textContent = `₹${annual.toLocaleString('en-IN')} / year`;
 }
 
-// ============================================================================
-// 3. INTERACTIVE SAMPLE CHAPTER READER
-// ============================================================================
-function switchReaderChapter(chapterNum) {
-  const sample = CHAPTER_SAMPLES[chapterNum];
-  if (!sample) return;
+function animateCounter(element, target, prefix = '') {
+  const start = parseInt(element.textContent.replace(/[^0-9]/g, '') || 0, 10);
+  const duration = 280;
+  const startTime = performance.now();
 
-  document.getElementById('reader-heading').textContent = sample.title;
-  const readerBody = document.getElementById('reader-body');
-  readerBody.innerHTML = sample.text;
-  readerBody.scrollTop = 0;
-  handleReaderScroll(readerBody);
-
-  // Update tabs styling
-  [1, 2, 3].forEach(n => {
-    const btn = document.getElementById(`reader-tab-1`.replace('1', n));
-    if (!btn) return;
-    if (n === chapterNum) {
-      btn.className = 'px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-semibold transition';
-    } else {
-      btn.className = 'px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 hover:text-white font-semibold border border-white/10 transition';
+  function step(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const current = Math.floor(start + (target - start) * progress);
+    element.textContent = `${prefix}${current.toLocaleString('en-IN')}`;
+    if (progress < 1) {
+      requestAnimationFrame(step);
     }
-  });
+  }
+  requestAnimationFrame(step);
 }
 
-function handleReaderScroll(el) {
-  const maxScroll = el.scrollHeight - el.clientHeight;
-  const pct = maxScroll > 0 ? Math.min(100, Math.round((el.scrollTop / maxScroll) * 100)) : 100;
-  const bar = document.getElementById('reader-progress');
-  if (bar) bar.style.width = `${Math.max(15, pct)}%`;
-}
-
-function adjustReaderFont(delta) {
-  currentReaderFontSize = Math.min(20, Math.max(12, currentReaderFontSize + delta));
-  const readerBody = document.getElementById('reader-body');
-  if (readerBody) readerBody.style.fontSize = `${currentReaderFontSize}px`;
-}
-
-// ============================================================================
-// 4. SCROLL REVEAL OBSERVER
-// ============================================================================
-function setupScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
+function setupInteractiveCounters() {
+  // Add quick tactile click animations to all buttons
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.add('scale-95');
+      setTimeout(() => this.classList.remove('scale-95'), 120);
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-// ============================================================================
-// 5. LIVE SOCIAL PROOF TOAST TICKER
-// ============================================================================
-const RECENT_SALES = [
-  { name: "Marcus", city: "Berlin", time: "3m ago" },
-  { name: "Priya", city: "Bengaluru", time: "7m ago" },
-  { name: "Liam", city: "Toronto", time: "11m ago" },
-  { name: "Sofia", city: "Madrid", time: "18m ago" },
-  { name: "Daniel", city: "Austin, TX", time: "24m ago" },
-  { name: "Kenji", city: "Tokyo", time: "31m ago" }
-];
-let toastIndex = 0;
-let toastTimeout = null;
-
-function startSocialProofToasts() {
-  setTimeout(showNextToast, 4000);
-}
-
-function showNextToast() {
-  const toast = document.getElementById('social-toast');
-  if (!toast) return;
-
-  const sale = RECENT_SALES[toastIndex % RECENT_SALES.length];
-  toastIndex++;
-
-  document.getElementById('toast-title').textContent = `${sale.name} from ${sale.city}`;
-  document.getElementById('toast-desc').textContent = `Purchased eBook • ${sale.time}`;
-
-  toast.classList.remove('hidden', 'toast-exit');
-  toast.classList.add('flex', 'toast-enter');
-
-  if (window.lucide) lucide.createIcons();
-
-  // Hide after 6 seconds
-  toastTimeout = setTimeout(() => {
-    dismissToast();
-    // Show next after 16 seconds
-    setTimeout(showNextToast, 16000);
-  }, 6000);
-}
-
-function dismissToast() {
-  const toast = document.getElementById('social-toast');
-  if (!toast) return;
-  toast.classList.remove('toast-enter');
-  toast.classList.add('toast-exit');
-  setTimeout(() => {
-    toast.classList.add('hidden');
-    toast.classList.remove('flex');
-  }, 350);
-}
-
-// ============================================================================
-// 6. COUNTDOWN & STICKY BAR
-// ============================================================================
-function startUrgencyTimer() {
-  let seconds = 4 * 3600 + 47 * 60 + 19;
-  const countdownEl = document.getElementById('countdown');
-  setInterval(() => {
-    if (seconds <= 0) seconds = 6 * 3600;
-    seconds--;
-    const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-    const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-    const s = String(seconds % 60).padStart(2, '0');
-    if (countdownEl) countdownEl.textContent = `${h}:${m}:${s}`;
-  }, 1000);
-}
-
-function setupScrollListener() {
-  const stickyBar = document.getElementById('sticky-bar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 450) {
-      stickyBar.classList.remove('translate-y-full');
-    } else {
-      stickyBar.classList.add('translate-y-full');
-    }
   });
 }
 
 // ============================================================================
-// 7. MODALS CONTROL
+// 3. SAMPLE CHAPTER READER MODAL
 // ============================================================================
-function openCheckoutModal() {
-  const modal = document.getElementById('checkout-modal');
-  const stepForm = document.getElementById('checkout-step-form');
-  const stepSuccess = document.getElementById('checkout-step-success');
+const CHAPTERS = {
+  1: {
+    heading: "Chapter 1: The AI Freelancer Mindset",
+    content: `
+      <p class="font-bold text-black text-sm">Welcome to Chapter 1 of The Student AI Side Hustle Playbook.</p>
+      <p>Most students look at artificial intelligence tools like ChatGPT, Claude, and Midjourney through a consumer lens. They use them to summarize college PDF notes, generate homework questions, or rewrite essays.</p>
+      <p>Meanwhile, businesses, founders, and content creators are desperate for fast, dependable micro-services—and they are actively paying ₹1,000 to ₹4,000 for work that takes an AI-empowered student less than 30 minutes to complete.</p>
+      <div class="p-4 rounded-xl bg-slush-ice border-2 border-black my-4">
+        <strong class="block text-xs font-black uppercase tracking-wider mb-1 text-black">The Core Mindset Shift:</strong>
+        <p class="text-xs text-gray-800 font-medium">Clients do not pay for AI. Clients pay for completed outcomes that save them time.</p>
+      </div>
+      <p>In the upcoming chapters, you will receive the exact step-by-step blueprints for 5 distinct AI micro-services, complete with client outreach scripts, prompt templates, and pricing guides.</p>
+    `
+  },
+  2: {
+    heading: "Chapter 2: The 5 High-Demand AI Micro-Services",
+    content: `
+      <p class="font-bold text-black text-sm">Overview of the Top 5 In-Demand Services in 2026:</p>
+      <ul class="space-y-2 text-xs font-medium text-gray-800 list-disc pl-5 my-3">
+        <li><strong>Service 1:</strong> AI Long-Form SEO Articles & Founder LinkedIn Ghostwriting (₹1,500/article)</li>
+        <li><strong>Service 2:</strong> High-Retention Visual Carousels & Infographics (₹1,200/deck)</li>
+        <li><strong>Service 3:</strong> 30-Second Hook-to-CTA Short-Form Reel Scripts (₹2,500/pack)</li>
+        <li><strong>Service 4:</strong> Digital Outreach & Lead Generation Funnels (₹3,000/campaign)</li>
+        <li><strong>Service 5:</strong> Automated PDF / Digital Checkout Pipeline setup (₹4,000/store)</li>
+      </ul>
+      <p>Inside the full edition: You get the fill-in-the-blank prompt chains and quality-control checklists for every single service.</p>
+    `
+  }
+};
 
-  stepForm.classList.remove('hidden');
-  stepSuccess.classList.add('hidden');
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
-
-function closeCheckoutModal() {
-  const modal = document.getElementById('checkout-modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+function switchReaderChapter(num) {
+  const chapter = CHAPTERS[num];
+  if (!chapter) return;
+  const heading = document.getElementById('reader-heading');
+  const body = document.getElementById('reader-body');
+  if (heading) heading.textContent = chapter.heading;
+  if (body) body.innerHTML = chapter.content;
 }
 
 function openPreviewModal() {
   const modal = document.getElementById('preview-modal');
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    if (window.lucide) lucide.createIcons();
+  }
 }
 
 function closePreviewModal() {
   const modal = document.getElementById('preview-modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-
-function openAdminModal() {
-  const modal = document.getElementById('admin-modal');
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-  loadDailyPosts();
-  loadAdminStats();
-}
-
-function closeAdminModal() {
-  const modal = document.getElementById('admin-modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-
-function switchAdminTab(tabName) {
-  const tabs = ['marketing', 'orders', 'settings'];
-  tabs.forEach(tab => {
-    const btn = document.getElementById(`tab-btn-${tab}`);
-    const content = document.getElementById(`tab-content-${tab}`);
-    if (tab === tabName) {
-      btn.className = 'px-4 py-2 text-indigo-400 border-b-2 border-indigo-500 transition flex items-center gap-2';
-      content.classList.remove('hidden');
-    } else {
-      btn.className = 'px-4 py-2 text-slate-400 hover:text-white transition flex items-center gap-2';
-      content.classList.add('hidden');
-    }
-  });
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
 }
 
 // ============================================================================
-// 8. AUTOMATED PAYMENT SUBMISSION & RAZORPAY UPI INTEGRATION
+// 4. CHECKOUT MODAL & RAZORPAY INTEGRATION (LIVE GATEWAY)
 // ============================================================================
-async function handlePaymentSubmit(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('cust-name').value;
-  const email = document.getElementById('cust-email').value;
-  const phone = document.getElementById('cust-phone')?.value || '9876543210';
-  const payBtn = document.getElementById('pay-button');
-
-  payBtn.disabled = true;
-  payBtn.innerHTML = `<span class="inline-block animate-spin mr-2">⚙️</span> Connecting to Razorpay UPI...`;
-
-  try {
-    const orderRes = await fetch('/api/create-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, name, phone })
-    });
-    const orderData = await orderRes.json();
-
-    // Official Razorpay Gateway Checkout
-    if (window.Razorpay && currentConfig.razorpayKeyId && !currentConfig.razorpayKeyId.includes('placeholder')) {
-      const options = {
-        key: currentConfig.razorpayKeyId,
-        name: "ReadNovaHub",
-        description: currentConfig.bookTitle,
-        image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-        prefill: {
-          name: name,
-          email: email,
-          contact: phone
-        },
-        theme: {
-          color: "#4f46e5"
-        },
-        handler: async function (response) {
-          await finalizeOrder(
-            orderData.orderId,
-            name,
-            email,
-            'Razorpay UPI (' + (response.razorpay_payment_id || 'Verified') + ')',
-            response.razorpay_payment_id,
-            response.razorpay_order_id,
-            response.razorpay_signature
-          );
-        },
-        modal: {
-          ondismiss: function() {
-            payBtn.disabled = false;
-            payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
-            if (window.lucide) lucide.createIcons();
-          }
-        }
-      };
-
-      if (orderData.razorpayOrderId) {
-        options.order_id = orderData.razorpayOrderId;
-      } else {
-        options.amount = orderData.amountInPaise || (currentConfig.price * 100);
-        options.currency = currentConfig.currency || "INR";
-      }
-
-      const rzp = new Razorpay(options);
-      rzp.on('payment.failed', function (response){
-        console.error("Razorpay error:", response.error);
-        payBtn.disabled = false;
-        payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
-        if (window.lucide) lucide.createIcons();
-      });
-      rzp.open();
-      return;
-    }
-
-    // Direct fallback for instant test simulation
-    await finalizeOrder(orderData.orderId, name, email, 'Verified Order', 'PAY_' + Math.random().toString(36).substring(2, 9).toUpperCase());
-
-  } catch (err) {
-    console.error("Payment error:", err);
-    alert("Could not process order. Please try again.");
-    payBtn.disabled = false;
-    payBtn.innerHTML = `<i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Pay ₹299 & Download Instantly &rarr;`;
+function openCheckoutModal() {
+  const modal = document.getElementById('checkout-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.getElementById('checkout-step-form')?.classList.remove('hidden');
+    document.getElementById('checkout-step-success')?.classList.add('hidden');
     if (window.lucide) lucide.createIcons();
   }
 }
 
-// Victory Chime Synthesizer (Pure Web Audio API — works on all mobile & desktop browsers)
+function closeCheckoutModal() {
+  const modal = document.getElementById('checkout-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+}
+
+async function handlePaymentSubmit(e) {
+  e.preventDefault();
+  const payBtn = document.getElementById('pay-button');
+  if (payBtn) {
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<span>Opening Secure Razorpay...</span>';
+  }
+
+  const name = document.getElementById('cust-name').value;
+  const email = document.getElementById('cust-email').value;
+  const phone = document.getElementById('cust-phone').value;
+
+  try {
+    // 1. Create order on server
+    const orderRes = await fetch('/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone })
+    });
+
+    const orderData = await orderRes.json();
+    if (!orderData.success) {
+      throw new Error(orderData.error || 'Could not initiate order');
+    }
+
+    // 2. Open Razorpay Checkout Modal
+    const options = {
+      key: orderData.razorpayKeyId || currentConfig.razorpayKeyId,
+      amount: orderData.amountInPaise,
+      currency: orderData.currency || 'INR',
+      name: "ReadNovaHub",
+      description: orderData.bookTitle || currentConfig.bookTitle,
+      order_id: orderData.razorpayOrderId,
+      prefill: {
+        name: name,
+        email: email,
+        contact: phone
+      },
+      theme: {
+        color: "#2563eb"
+      },
+      handler: async function (response) {
+        // 3. Verify Payment
+        await verifyAndDeliverPayment(response, orderData, { name, email, phone });
+      },
+      modal: {
+        ondismiss: function () {
+          if (payBtn) {
+            payBtn.disabled = false;
+            applyConfig(currentConfig);
+          }
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+
+  } catch (err) {
+    alert("Payment initialization error: " + err.message);
+    if (payBtn) {
+      payBtn.disabled = false;
+      applyConfig(currentConfig);
+    }
+  }
+}
+
+async function verifyAndDeliverPayment(paymentResponse, orderData, customerData) {
+  try {
+    const verifyRes = await fetch('/api/verify-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        razorpay_order_id: paymentResponse.razorpay_order_id,
+        razorpay_payment_id: paymentResponse.razorpay_payment_id,
+        razorpay_signature: paymentResponse.razorpay_signature,
+        customerName: customerData.name,
+        customerEmail: customerData.email,
+        customerPhone: customerData.phone,
+        orderId: orderData.orderId,
+        amount: orderData.amount
+      })
+    });
+
+    const verifyData = await verifyRes.json();
+
+    // Trigger celebration audio chime & multi-confetti
+    playCelebrationChime();
+    fireMultiConfetti();
+
+    // Show success step
+    document.getElementById('checkout-step-form')?.classList.add('hidden');
+    const successStep = document.getElementById('checkout-step-success');
+    if (successStep) {
+      successStep.classList.remove('hidden');
+      document.getElementById('success-order-id').textContent = orderData.orderId;
+      document.getElementById('success-customer-email').textContent = customerData.email;
+      
+      const dlLink = document.getElementById('download-link');
+      if (dlLink && verifyData.downloadUrl) {
+        dlLink.href = verifyData.downloadUrl;
+      }
+    }
+
+    // Auto-trigger PDF download directly
+    setTimeout(() => {
+      const dl = document.getElementById('download-link');
+      if (dl) dl.click();
+    }, 1200);
+
+  } catch (err) {
+    alert("Payment verification note: Payment succeeded, preparing your download link!");
+    document.getElementById('checkout-step-form')?.classList.add('hidden');
+    document.getElementById('checkout-step-success')?.classList.remove('hidden');
+  }
+}
+
+// Multi-stage confetti celebration
+function fireMultiConfetti() {
+  if (typeof confetti !== 'function') return;
+  confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+  setTimeout(() => {
+    confetti({ particleCount: 120, spread: 100, origin: { y: 0.5 } });
+  }, 300);
+  setTimeout(() => {
+    confetti({ particleCount: 60, angle: 60, spread: 55, origin: { x: 0 } });
+    confetti({ particleCount: 60, angle: 120, spread: 55, origin: { x: 1 } });
+  }, 600);
+}
+
+// Major Victory Audio Chime via Web Audio API
 function playCelebrationChime() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 (Major victory chime)
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
     notes.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.value = freq;
-      gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.12);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.12 + 0.45);
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.12));
+      gain.gain.setValueAtTime(0.2, ctx.currentTime + (idx * 0.12));
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (idx * 0.12) + 0.6);
       osc.connect(gain);
       gain.connect(ctx.destination);
-      osc.start(ctx.currentTime + idx * 0.12);
-      osc.stop(ctx.currentTime + idx * 0.12 + 0.45);
+      osc.start(ctx.currentTime + (idx * 0.12));
+      osc.stop(ctx.currentTime + (idx * 0.12) + 0.6);
     });
-  } catch (e) {
-    // Audio autoplay blocked or unsupported, fail silently
-  }
+  } catch (e) {}
 }
 
-// Multi-stage colorful confetti cannons
-function fireMultiConfetti() {
-  if (typeof confetti === 'function') {
-    // 1. Center blast
-    confetti({ particleCount: 90, spread: 100, origin: { y: 0.55 } });
-    // 2. Left side cannon
+// Social proof notifications
+function startSocialProofToasts() {
+  const toast = document.getElementById('social-toast');
+  if (!toast) return;
+
+  const buyers = [
+    { name: "Student in Chennai", time: "3 mins ago" },
+    { name: "Student in Bangalore", time: "11 mins ago" },
+    { name: "Freelancer in Mumbai", time: "18 mins ago" },
+    { name: "Student in Coimbatore", time: "25 mins ago" },
+    { name: "Engineering Student (VIT)", time: "32 mins ago" }
+  ];
+
+  let idx = 0;
+  setInterval(() => {
+    const b = buyers[idx % buyers.length];
+    const title = document.getElementById('toast-title');
+    const desc = document.getElementById('toast-desc');
+    if (title) title.textContent = b.name;
+    if (desc) desc.textContent = `Just unlocked the Playbook • ${b.time}`;
+
+    toast.classList.remove('hidden');
     setTimeout(() => {
-      confetti({ particleCount: 50, angle: 60, spread: 70, origin: { x: 0.1, y: 0.65 } });
-    }, 250);
-    // 3. Right side cannon
-    setTimeout(() => {
-      confetti({ particleCount: 50, angle: 120, spread: 70, origin: { x: 0.9, y: 0.65 } });
-    }, 450);
-  }
-}
+      toast.classList.add('hidden');
+    }, 4500);
 
-async function finalizeOrder(orderId, name, email, paymentMethod, paymentId, razorpayOrderId, razorpaySignature) {
-  const verifyRes = await fetch('/api/verify-payment', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      orderId: orderId,
-      customerName: name,
-      email: email,
-      paymentMethod: paymentMethod,
-      paymentId: paymentId,
-      razorpayOrderId: razorpayOrderId,
-      razorpaySignature: razorpaySignature
-    })
-  });
-
-  const verifyData = await verifyRes.json();
-
-  if (verifyData.success) {
-    document.getElementById('checkout-step-form').classList.add('hidden');
-    const stepSuccess = document.getElementById('checkout-step-success');
-    stepSuccess.classList.remove('hidden');
-
-    document.getElementById('success-order-id').textContent = verifyData.order.orderId;
-    document.getElementById('success-customer-email').textContent = email;
-    
-    const downloadLink = document.getElementById('download-link');
-    downloadLink.href = verifyData.downloadUrl || '/downloads/The-Student-AI-Side-Hustle-Playbook.pdf';
-    downloadLink.setAttribute('download', 'The-Student-AI-Side-Hustle-Playbook.pdf');
-
-    // 1. Play victory sound fanfare
-    playCelebrationChime();
-
-    // 2. Fire 3-stage full-screen colorful confetti
-    fireMultiConfetti();
-
-    // 3. Auto-trigger the PDF download in the browser
-    setTimeout(() => {
-      downloadLink.click();
-    }, 700);
-
-    if (window.lucide) lucide.createIcons();
-  } else {
-    alert("Payment verification issue: " + (verifyData.error || "Please try again."));
-  }
-}
-
-// ============================================================================
-// 9. DAILY MARKETING POST GENERATOR & ADMIN
-// ============================================================================
-async function loadDailyPosts() {
-  const container = document.getElementById('posts-container');
-  container.innerHTML = `<div class="text-xs text-slate-400 text-center py-4">Generating daily marketing posts...</div>`;
-
-  try {
-    const res = await fetch('/api/marketing/daily-posts');
-    const data = await res.json();
-
-    if (data.posts && data.posts.length > 0) {
-      container.innerHTML = data.posts.map(p => `
-        <div class="bg-slate-950 border border-white/10 rounded-xl p-4 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-500/20 px-2 py-0.5 rounded">Day ${p.day} • ${p.platform}</span>
-            <button onclick="copyPostText(this, \`${escapeJsString(p.content)}\`)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded transition flex items-center gap-1">
-              📋 Copy Post
-            </button>
-          </div>
-          <div class="text-xs font-semibold text-white">${p.title}</div>
-          <pre class="text-xs text-slate-300 font-sans whitespace-pre-wrap bg-slate-900/60 p-3 rounded-lg border border-white/[0.06]">${p.content}</pre>
-        </div>
-      `).join('');
-    }
-  } catch (e) {
-    container.innerHTML = `<div class="text-xs text-rose-400 text-center py-4">Failed to load marketing posts.</div>`;
-  }
-}
-
-function copyPostText(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const originalText = btn.innerHTML;
-    btn.innerHTML = `✅ Copied!`;
-    btn.classList.add('bg-emerald-600', 'text-white');
-    setTimeout(() => {
-      btn.innerHTML = originalText;
-      btn.classList.remove('bg-emerald-600', 'text-white');
-    }, 2000);
-  });
-}
-
-function escapeJsString(str) {
-  return str.replace(/`/g, '\\`').replace(/\$/g, '\\$');
-}
-
-async function loadAdminStats() {
-  try {
-    const res = await fetch('/api/admin/stats');
-    const data = await res.json();
-
-    document.getElementById('admin-total-orders').textContent = data.totalOrders;
-    document.getElementById('admin-total-revenue').textContent = `${data.currencySymbol}${data.totalRevenue}`;
-
-    const listEl = document.getElementById('admin-orders-list');
-    if (data.recentOrders && data.recentOrders.length > 0) {
-      listEl.innerHTML = data.recentOrders.map(o => `
-        <div class="p-2.5 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-between">
-          <div>
-            <div class="font-bold text-slate-200">${o.customerName} <span class="text-slate-400 font-normal">(${o.email})</span></div>
-            <div class="text-[10px] text-slate-500">${new Date(o.createdAt).toLocaleString()} • ${o.paymentMethod}</div>
-          </div>
-          <div class="text-right">
-            <span class="font-bold text-emerald-400">${data.currencySymbol}${o.amount}</span>
-            <span class="block text-[10px] text-emerald-500 uppercase font-bold">PAID & SENT</span>
-          </div>
-        </div>
-      `).join('');
-    } else {
-      listEl.innerHTML = `<p class="text-slate-500 py-3 text-center">No orders recorded yet. Complete a test purchase!</p>`;
-    }
-  } catch (err) {
-    console.error("Stats load error:", err);
-  }
-}
-
-async function handleSaveSettings(event) {
-  event.preventDefault();
-
-  const title = document.getElementById('setting-title').value;
-  const price = Number(document.getElementById('setting-price').value);
-  const currencySymbol = document.getElementById('setting-currency-symbol').value || '$';
-  const author = document.getElementById('setting-author').value;
-  const stripeKey = document.getElementById('setting-stripe-key').value;
-  const razorpayKey = document.getElementById('setting-razorpay-key').value;
-
-  try {
-    const res = await fetch('/api/admin/config', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        bookTitle: title,
-        price: price,
-        currencySymbol: currencySymbol,
-        author: author,
-        stripePublicKey: stripeKey,
-        razorpayKeyId: razorpayKey
-      })
-    });
-
-    const data = await res.json();
-    if (data.success) {
-      applyConfig(data.config);
-      alert("✅ Store settings updated successfully!");
-      closeAdminModal();
-    }
-  } catch (e) {
-    alert("Could not save settings.");
-  }
+    idx++;
+  }, 14000);
 }

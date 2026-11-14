@@ -41,23 +41,41 @@ const defaultConfig = {
   pagesCount: 25
 };
 
+const WRITABLE_CONFIG_FILE = path.join(DATA_DIR, 'config.json');
+let cachedConfig = null;
+
 function getConfig() {
+  if (cachedConfig) {
+    return { ...defaultConfig, ...cachedConfig };
+  }
+  try {
+    if (fs.existsSync(WRITABLE_CONFIG_FILE)) {
+      cachedConfig = JSON.parse(fs.readFileSync(WRITABLE_CONFIG_FILE, 'utf8'));
+      return { ...defaultConfig, ...cachedConfig };
+    }
+  } catch (e) {}
   try {
     if (fs.existsSync(CONFIG_FILE)) {
-      return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+      cachedConfig = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+      return { ...defaultConfig, ...cachedConfig };
     }
   } catch (err) {
     console.error("Error reading config:", err);
   }
-  return { ...defaultConfig };
+  cachedConfig = { ...defaultConfig };
+  return { ...cachedConfig };
 }
 
 function saveConfig(cfg) {
+  cachedConfig = { ...defaultConfig, ...cfg };
   try {
-    fs.writeFileSync(CONFIG_FILE, JSON.stringify(cfg, null, 2));
+    fs.writeFileSync(WRITABLE_CONFIG_FILE, JSON.stringify(cachedConfig, null, 2));
   } catch (err) {
-    console.warn("Could not save config to disk:", err.message);
+    console.warn("Could not save config to WRITABLE_CONFIG_FILE:", err.message);
   }
+  try {
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(cachedConfig, null, 2));
+  } catch (err) {}
 }
 
 let inMemoryOrders = [];

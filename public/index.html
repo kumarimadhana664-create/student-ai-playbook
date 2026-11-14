@@ -9,7 +9,7 @@
   <!-- Google Fonts: Plus Jakarta Sans & Fraunces/Serif Italic for Slush contrast -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -58,39 +58,39 @@
       
       <!-- Logo -->
       <a class="flex items-center gap-2 group" href="/">
-        <div class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-slush-blue text-white flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000000] group-hover:rotate-6 transition-transform">
+        <div class="h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-slush-blue text-white flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000000] group-hover:rotate-12 transition-transform">
           <i data-lucide="zap" class="w-4 h-4 fill-slush-yellow text-slush-yellow"></i>
         </div>
         <div class="flex items-baseline gap-1">
           <span class="font-black text-lg tracking-tight text-black">ReadNova<span class="text-slush-blue">Hub</span></span>
-          <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.2 bg-slush-yellow rounded border border-black shadow-[1px_1px_0px_0px_#000]">2026</span>
+          <span class="text-[10px] font-black uppercase px-1.5 py-0.2 bg-slush-yellow rounded border border-black shadow-[1px_1px_0px_0px_#000]">2026</span>
         </div>
       </a>
 
       <!-- Center Pill Links (Desktop) -->
       <nav class="hidden md:flex items-center gap-2">
-        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#blueprints">
+        <a class="px-3.5 py-1 text-xs font-black rounded-full transition-all text-black hover:bg-slush-ice border border-transparent hover:border-black" href="#blueprints">
           5 Blueprints
         </a>
-        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#calculator">
+        <a class="px-3.5 py-1 text-xs font-black rounded-full transition-all text-black hover:bg-slush-ice border border-transparent hover:border-black" href="#calculator">
           Earnings Calculator
         </a>
-        <button onclick="openPreviewModal()" class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black cursor-pointer">
+        <button onclick="openPreviewModal()" class="px-3.5 py-1 text-xs font-black rounded-full transition-all text-black hover:bg-slush-ice border border-transparent hover:border-black cursor-pointer">
           Free Chapter
         </button>
-        <a class="px-3.5 py-1 text-xs font-extrabold rounded-full transition-all text-black hover:bg-slush-glacier border border-transparent hover:border-black" href="#faq">
+        <a class="px-3.5 py-1 text-xs font-black rounded-full transition-all text-black hover:bg-slush-ice border border-transparent hover:border-black" href="#faq">
           FAQ
         </a>
       </nav>
 
       <!-- Right Action CTA -->
       <div class="flex items-center gap-2">
-        <a href="/admin" class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-black text-black px-2.5 py-1 rounded-full bg-slush-yellow border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:bg-yellow-300 transition-all">
+        <a href="/admin" class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-black text-black px-2.5 sm:px-3 py-1 rounded-full bg-slush-yellow border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#000] transition-all">
           <i data-lucide="lock" class="w-3 h-3"></i>
           <span>Admin</span>
         </a>
-        <button onclick="openCheckoutModal()" class="slush-btn-primary px-4 sm:px-5 py-2 text-xs font-black gap-1.5 uppercase tracking-wider">
-          <span>Get Playbook ₹299</span>
+        <button onclick="openCheckoutModal()" class="slush-btn-primary px-3.5 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-black gap-1 uppercase tracking-wider">
+          <span>Get Playbook <span class="book-price-display">₹299</span></span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
@@ -101,67 +101,75 @@
   <main class="flex-1">
 
     <!-- ========================================================================
-       SLUSH HERO SECTION (Massive Typography + Organic 3D Blob + Floating Stickers)
+       SLUSH HERO SECTION (Massive Typography + Dual Morphing Blobs + 5 Floating Stickers)
        ======================================================================== -->
     <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
       
-      <!-- Animated Morphing Blue Blob in Background (Slush Signature) -->
+      <!-- Dual Layered Animated Morphing Blue & Lime Blobs in Background -->
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[620px] h-[340px] sm:h-[620px] slush-blob pointer-events-none -z-10"></div>
+      <div class="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] slush-blob-secondary pointer-events-none -z-10"></div>
 
-      <!-- Floating Playful 3D Stickers (Animated!) -->
-      <div class="hidden lg:block absolute top-16 left-12 animate-float-1 pointer-events-none">
+      <!-- 5 Floating Playful 3D Stickers (Animated Rich Motion!) -->
+      <div class="hidden lg:block absolute top-14 left-10 animate-float-1 pointer-events-none">
         <div class="slush-badge bg-slush-lime text-black px-4 py-2 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
           <span class="text-sm">⚡</span>
           <span>Earn ₹15k–₹35k/Month</span>
         </div>
       </div>
 
-      <div class="hidden lg:block absolute top-28 right-16 animate-float-2 pointer-events-none">
+      <div class="hidden lg:block absolute top-24 right-12 animate-float-2 pointer-events-none">
         <div class="slush-badge bg-slush-yellow text-black px-4 py-2 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
           <span class="text-sm">🔥</span>
           <span>Launch Deal: 50% OFF</span>
         </div>
       </div>
 
-      <div class="hidden lg:block absolute bottom-24 left-20 animate-float-3 pointer-events-none">
+      <div class="hidden lg:block absolute bottom-20 left-16 animate-float-3 pointer-events-none">
         <div class="slush-badge bg-slush-violet text-black px-3.5 py-1.5 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
           <span class="text-sm">🤖</span>
           <span>100% Free AI Tools Only</span>
         </div>
       </div>
 
-      <div class="hidden lg:block absolute bottom-28 right-24 animate-float-4 pointer-events-none">
+      <div class="hidden lg:block absolute bottom-24 right-20 animate-float-4 pointer-events-none">
         <div class="slush-badge bg-white text-black px-3.5 py-1.5 border-2 border-black flex items-center gap-1.5 shadow-[3px_3px_0px_0px_#000]">
           <span class="text-sm">✨</span>
           <span>Instant PDF Download</span>
         </div>
       </div>
 
+      <div class="hidden xl:block absolute top-1/2 -right-2 animate-float-5 pointer-events-none">
+        <div class="slush-badge bg-slush-sky text-black px-3 py-1 border-2 border-black flex items-center gap-1 shadow-[3px_3px_0px_0px_#000]">
+          <span class="text-sm">🎯</span>
+          <span>No Coding Needed</span>
+        </div>
+      </div>
+
       <!-- Hero Main Content -->
       <div class="max-w-5xl mx-auto text-center relative z-10">
 
-        <!-- Top Pill Tag -->
+        <!-- Top Pill Tag with Live Radar Dot -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000] text-xs font-black uppercase tracking-wider mb-6 animate-pulse-glow">
-          <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
           <span>The Practical 2026 Student Guide</span>
         </div>
 
         <!-- Slush High-Impact Headline -->
-        <h1 id="hero-title" class="text-4xl sm:text-7xl lg:text-8xl font-black text-black tracking-tight leading-[0.98] uppercase">
+        <h1 class="text-4xl sm:text-7xl lg:text-8xl font-black text-black tracking-tight leading-[0.98] uppercase">
           Your College Income. <br>
           <span class="font-serif italic font-normal text-slush-blue lowercase">unstuck.</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="mt-6 text-base sm:text-xl text-gray-800 font-medium max-w-2xl mx-auto leading-relaxed">
-          Stop using ChatGPT just for homework summaries. Learn the 5 high-paying AI micro-services that real clients pay <strong class="font-extrabold text-black">₹1,000 – ₹3,500/gig</strong> for—with zero coding and ready-to-use prompt templates.
+          Stop using ChatGPT just for homework summaries. Learn the 5 high-paying AI micro-services that real clients pay <strong class="font-black text-black">₹1,000 – ₹3,500/gig</strong> for—with zero coding and ready-to-use prompt templates.
         </p>
 
         <!-- CTA Action Buttons -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button onclick="openCheckoutModal()" class="slush-btn-primary text-sm sm:text-base px-8 py-4 uppercase tracking-wider gap-2.5 w-full sm:w-auto animate-shine">
             <i data-lucide="lock" class="w-4 h-4"></i>
-            <span>Unlock Instant Access — ₹299</span>
+            <span>Unlock Instant Access — <span class="book-price-display">₹299</span></span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
           
@@ -171,11 +179,11 @@
           </button>
         </div>
 
-        <!-- Price Anchor Sticker -->
+        <!-- Dynamic Price Anchor Sticker -->
         <div class="mt-6 flex items-center justify-center gap-2 text-xs font-bold text-gray-700">
           <span>Special Launch:</span>
-          <span class="font-black text-base text-black bg-slush-yellow px-2 py-0.5 rounded-md border border-black shadow-[1px_1px_0px_0px_#000]">₹299</span>
-          <span class="line-through text-gray-400">₹599</span>
+          <span class="font-black text-base text-black bg-slush-yellow px-2 py-0.5 rounded-md border border-black shadow-[1px_1px_0px_0px_#000] book-price-display">₹299</span>
+          <span class="line-through text-gray-400 original-price-display">₹599</span>
           <span class="text-green-700 font-extrabold">• Delivered instantly via Razorpay UPI</span>
         </div>
 
@@ -183,39 +191,69 @@
     </section>
 
     <!-- ========================================================================
-       SLUSH INFINITE MARQUEE TICKER (High-Energy Running Banner)
+       DUAL SLUSH INFINITE RUNNING MARQUEE TICKERS (Layered Counter-Movement)
        ======================================================================== -->
-    <div class="w-full bg-black text-white py-3 border-y-2 border-black overflow-hidden -rotate-1 shadow-[0_4px_10px_rgba(0,0,0,0.15)] my-6">
-      <div class="animate-marquee whitespace-nowrap text-xs sm:text-sm font-black tracking-widest uppercase flex items-center gap-6">
-        <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
-        <span class="text-slush-yellow">✦</span>
-        <span>₹299 LAUNCH DEAL</span>
-        <span class="text-slush-lime">✦</span>
-        <span>NO CODING DEGREE NEEDED</span>
-        <span class="text-slush-sky">✦</span>
-        <span>CHATGPT + CANVA + MIDJOURNEY</span>
-        <span class="text-slush-yellow">✦</span>
-        <span>INSTANT AUTOMATED PDF DELIVERY</span>
-        <span class="text-slush-lime">✦</span>
-        <span>EARN ₹15,000 – ₹35,000/MONTH</span>
-        <span class="text-slush-sky">✦</span>
-        <span>5 READY-TO-USE BLUEPRINTS</span>
-        <span class="text-slush-yellow">✦</span>
-        <!-- Duplicated for seamless loop -->
-        <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
-        <span class="text-slush-yellow">✦</span>
-        <span>₹299 LAUNCH DEAL</span>
-        <span class="text-slush-lime">✦</span>
-        <span>NO CODING DEGREE NEEDED</span>
-        <span class="text-slush-sky">✦</span>
-        <span>CHATGPT + CANVA + MIDJOURNEY</span>
-        <span class="text-slush-yellow">✦</span>
-        <span>INSTANT AUTOMATED PDF DELIVERY</span>
-        <span class="text-slush-lime">✦</span>
-        <span>EARN ₹15,000 – ₹35,000/MONTH</span>
-        <span class="text-slush-sky">✦</span>
-        <span>5 READY-TO-USE BLUEPRINTS</span>
-        <span class="text-slush-yellow">✦</span>
+    <div class="w-full my-6 space-y-2">
+      <!-- Ribbon 1: Black Ribbon moving left -->
+      <div class="w-full bg-black text-white py-3 border-y-2 border-black overflow-hidden -rotate-1 shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
+        <div class="animate-marquee whitespace-nowrap text-xs sm:text-sm font-black tracking-widest uppercase flex items-center gap-6">
+          <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
+          <span class="text-slush-yellow">✦</span>
+          <span><span class="book-price-display">₹299</span> LAUNCH DEAL</span>
+          <span class="text-slush-lime">✦</span>
+          <span>NO CODING DEGREE NEEDED</span>
+          <span class="text-slush-sky">✦</span>
+          <span>CHATGPT + CANVA + MIDJOURNEY</span>
+          <span class="text-slush-yellow">✦</span>
+          <span>INSTANT AUTOMATED PDF DELIVERY</span>
+          <span class="text-slush-lime">✦</span>
+          <span>EARN ₹15,000 – ₹35,000/MONTH</span>
+          <span class="text-slush-sky">✦</span>
+          <span>5 READY-TO-USE BLUEPRINTS</span>
+          <span class="text-slush-yellow">✦</span>
+          <!-- Duplicate for seamless loop -->
+          <span>🚀 THE STUDENT AI SIDE HUSTLE PLAYBOOK</span>
+          <span class="text-slush-yellow">✦</span>
+          <span><span class="book-price-display">₹299</span> LAUNCH DEAL</span>
+          <span class="text-slush-lime">✦</span>
+          <span>NO CODING DEGREE NEEDED</span>
+          <span class="text-slush-sky">✦</span>
+          <span>CHATGPT + CANVA + MIDJOURNEY</span>
+          <span class="text-slush-yellow">✦</span>
+          <span>INSTANT AUTOMATED PDF DELIVERY</span>
+          <span class="text-slush-lime">✦</span>
+          <span>EARN ₹15,000 – ₹35,000/MONTH</span>
+          <span class="text-slush-sky">✦</span>
+          <span>5 READY-TO-USE BLUEPRINTS</span>
+          <span class="text-slush-yellow">✦</span>
+        </div>
+      </div>
+
+      <!-- Ribbon 2: Electric Blue Ribbon moving right -->
+      <div class="w-full bg-slush-blue text-white py-2 border-y-2 border-black overflow-hidden rotate-1 shadow-[0_3px_8px_rgba(0,0,0,0.1)]">
+        <div class="animate-marquee-reverse whitespace-nowrap text-[11px] sm:text-xs font-black tracking-widest uppercase flex items-center gap-6">
+          <span>⚡ STEP-BY-STEP PROMPTS INCLUDED</span>
+          <span class="text-slush-yellow">★</span>
+          <span>CLIENT OUTREACH DM SCRIPTS</span>
+          <span class="text-slush-lime">★</span>
+          <span>PHONE & LAPTOP COMPATIBLE</span>
+          <span class="text-slush-yellow">★</span>
+          <span>VERIFIED RAZORPAY PAYMENT GATEWAY</span>
+          <span class="text-slush-lime">★</span>
+          <span>420+ HAPPY STUDENT READERS</span>
+          <span class="text-slush-yellow">★</span>
+          <!-- Duplicate -->
+          <span>⚡ STEP-BY-STEP PROMPTS INCLUDED</span>
+          <span class="text-slush-yellow">★</span>
+          <span>CLIENT OUTREACH DM SCRIPTS</span>
+          <span class="text-slush-lime">★</span>
+          <span>PHONE & LAPTOP COMPATIBLE</span>
+          <span class="text-slush-yellow">★</span>
+          <span>VERIFIED RAZORPAY PAYMENT GATEWAY</span>
+          <span class="text-slush-lime">★</span>
+          <span>420+ HAPPY STUDENT READERS</span>
+          <span class="text-slush-yellow">★</span>
+        </div>
       </div>
     </div>
 
@@ -358,13 +396,13 @@
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-slush-blue/40 rounded-full blur-xl pointer-events-none"></div>
           <div>
             <span class="slush-badge bg-slush-lime text-black px-2.5 py-0.5 mb-3 inline-block">All 5 Included</span>
-            <h3 class="font-black text-2xl text-white mb-2 uppercase">Unlock All 5 For Just ₹299</h3>
+            <h3 class="font-black text-2xl text-white mb-2 uppercase">Unlock All 5 For Just <span class="book-price-display">₹299</span></h3>
             <p class="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed mb-6">
               One single purchase grants you lifetime access to the complete 25-page playbook and free updates.
             </p>
           </div>
           <button onclick="openCheckoutModal()" class="slush-btn-lime w-full py-3 text-xs uppercase tracking-wider font-black gap-2">
-            <span>Buy Playbook (₹299)</span>
+            <span>Buy Playbook (<span class="book-price-display">₹299</span>)</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -435,7 +473,7 @@
             <div class="space-y-2 pt-4 border-t border-white/20 text-xs text-left text-gray-300 mb-6 font-medium">
               <div class="flex justify-between">
                 <span>Playbook Investment:</span>
-                <span class="text-white font-bold">₹299</span>
+                <span class="text-white font-bold book-price-display">₹299</span>
               </div>
               <div class="flex justify-between">
                 <span>First Gig Payoff:</span>
@@ -522,7 +560,7 @@
 
           <div class="mt-8 flex flex-col sm:flex-row items-center gap-3">
             <button onclick="openCheckoutModal()" class="slush-btn-primary w-full sm:w-auto px-7 py-3.5 text-xs font-black uppercase tracking-wider gap-2">
-              <span>Get Instant Access — ₹299</span>
+              <span>Get Instant Access — <span class="book-price-display">₹299</span></span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
             <span class="text-xs text-gray-500 font-bold flex items-center gap-1">
@@ -596,11 +634,11 @@
             Start Your Side Hustle Today
           </h2>
           <p class="text-sm sm:text-lg text-slush-ice max-w-xl mx-auto mt-3 mb-8 font-medium">
-            Join hundreds of college students turning free AI tools into real monthly income. Just ₹299 for instant lifetime access.
+            Join hundreds of college students turning free AI tools into real monthly income. Just <span class="book-price-display font-black text-slush-yellow">₹299</span> for instant lifetime access.
           </p>
           <button onclick="openCheckoutModal()" class="slush-btn-lime px-8 py-4 text-sm sm:text-base uppercase tracking-wider font-black gap-2">
             <i data-lucide="lock" class="w-4 h-4"></i>
-            <span>Unlock For ₹299 Via UPI</span>
+            <span>Unlock For <span class="book-price-display">₹299</span> Via UPI</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </div>
@@ -634,10 +672,10 @@
     <div class="flex items-center justify-between gap-3">
       <div>
         <span id="sticky-title" class="text-xs font-black text-black block truncate max-w-[170px]">The Student AI Playbook</span>
-        <span class="text-xs text-slush-blue font-black">₹299 <span class="line-through text-gray-400 font-normal text-[10px]">₹599</span></span>
+        <span class="text-xs text-slush-blue font-black"><span class="book-price-display">₹299</span> <span class="line-through text-gray-400 font-normal text-[10px] original-price-display">₹599</span></span>
       </div>
       <button onclick="openCheckoutModal()" class="slush-btn-lime px-4 py-2 text-xs font-black uppercase tracking-wider">
-        <span>Unlock ₹299</span>
+        <span>Unlock <span class="book-price-display">₹299</span></span>
       </button>
     </div>
   </div>
@@ -666,11 +704,11 @@
         <div class="bg-slush-ice border-2 border-black rounded-xl p-3.5 mb-5">
           <div class="flex items-center justify-between text-xs mb-1">
             <span id="modal-book-title" class="font-bold text-black truncate max-w-[220px]">The Student AI Side Hustle Playbook</span>
-            <span class="font-black text-black text-sm">₹299</span>
+            <span class="font-black text-black text-sm book-price-display">₹299</span>
           </div>
           <div class="flex items-center justify-between text-[11px] text-gray-600 font-medium">
             <span>Special 50% Launch Deal</span>
-            <span class="line-through">₹599</span>
+            <span class="line-through original-price-display">₹599</span>
           </div>
         </div>
 
@@ -692,7 +730,7 @@
 
           <button type="submit" id="pay-button" class="slush-btn-primary w-full py-3.5 text-xs font-black uppercase tracking-wider mt-4">
             <i data-lucide="lock" class="w-4 h-4 mr-1"></i>
-            <span>Pay ₹299 (GPay, PhonePe, Cards)</span>
+            <span>Pay <span class="book-price-display">₹299</span> (GPay, PhonePe, Cards)</span>
           </button>
         </form>
 
@@ -766,7 +804,7 @@
       <div class="pt-4 border-t-2 border-black flex flex-col sm:flex-row items-center justify-between gap-3">
         <span class="text-xs text-gray-500 font-bold">Previewing Chapter 1 of 5 (23 pages remaining)</span>
         <button onclick="closePreviewModal(); openCheckoutModal();" class="slush-btn-primary px-5 py-2.5 text-xs font-black uppercase tracking-wider">
-          <span>Unlock Full 25 Pages (₹299)</span>
+          <span>Unlock Full 25 Pages (<span class="book-price-display">₹299</span>)</span>
         </button>
       </div>
 

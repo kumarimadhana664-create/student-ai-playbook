@@ -1,10 +1,11 @@
 /* ==========================================================================
-   SLUSH-INSPIRED HIGH-ENERGY DESIGN SYSTEM
+   SLUSH-INSPIRED HIGH-ENERGY ANIMATION & DESIGN SYSTEM
    Tactile 3D web3/fintech aesthetic with rich organic animations
    ========================================================================== */
 
 :root {
   --color-slush-blue: #2563eb;
+  --color-slush-sky: #38bdf8;
   --color-slush-ice: #dbeafe;
   --color-slush-glacier: #eff6ff;
   --color-slush-yellow: #fde047;
@@ -28,12 +29,12 @@ html {
   box-shadow: 4px 4px 0px 0px #000000;
   border-radius: 20px;
   background: #ffffff;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .slush-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px 0px #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px 0px #000000;
 }
 
 .slush-btn-primary {
@@ -43,7 +44,7 @@ html {
   color: #ffffff;
   border-radius: 9999px;
   font-weight: 800;
-  transition: all 0.15s ease-out;
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -68,7 +69,7 @@ html {
   color: #000000;
   border-radius: 9999px;
   font-weight: 800;
-  transition: all 0.15s ease-out;
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -93,7 +94,7 @@ html {
   color: #000000;
   border-radius: 9999px;
   font-weight: 700;
-  transition: all 0.15s ease-out;
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -112,7 +113,7 @@ html {
 }
 
 .slush-badge {
-  border: 1.5px solid #000000;
+  border: 2px solid #000000;
   box-shadow: 2px 2px 0px 0px #000000;
   border-radius: 9999px;
   font-weight: 800;
@@ -125,43 +126,48 @@ html {
    KEYFRAME ANIMATIONS (MORE ANIMATION!)
    -------------------------------------------------------------------------- */
 
-/* 1. Floating Stickers */
+/* 1. Floating Stickers with Alternating Physics */
 @keyframes float-gentle {
   0%, 100% {
-    transform: translateY(0px) rotate(var(--rot, 0deg));
+    transform: translateY(0px) rotate(var(--rot, 0deg)) scale(1);
   }
   50% {
-    transform: translateY(-12px) rotate(calc(var(--rot, 0deg) + 2deg));
+    transform: translateY(-14px) rotate(calc(var(--rot, 0deg) + 3deg)) scale(1.02);
   }
 }
 
 @keyframes float-reverse {
   0%, 100% {
-    transform: translateY(0px) rotate(var(--rot, 0deg));
+    transform: translateY(0px) rotate(var(--rot, 0deg)) scale(1);
   }
   50% {
-    transform: translateY(10px) rotate(calc(var(--rot, 0deg) - 2deg));
+    transform: translateY(12px) rotate(calc(var(--rot, 0deg) - 3deg)) scale(0.98);
   }
 }
 
 .animate-float-1 {
-  --rot: -4deg;
-  animation: float-gentle 4s ease-in-out infinite;
+  --rot: -5deg;
+  animation: float-gentle 4.2s ease-in-out infinite;
 }
 
 .animate-float-2 {
-  --rot: 6deg;
-  animation: float-reverse 4.5s ease-in-out infinite 0.5s;
+  --rot: 7deg;
+  animation: float-reverse 4.8s ease-in-out infinite 0.4s;
 }
 
 .animate-float-3 {
   --rot: -8deg;
-  animation: float-gentle 5s ease-in-out infinite 1s;
+  animation: float-gentle 5.2s ease-in-out infinite 0.9s;
 }
 
 .animate-float-4 {
-  --rot: 5deg;
-  animation: float-reverse 3.8s ease-in-out infinite 1.5s;
+  --rot: 6deg;
+  animation: float-reverse 4s ease-in-out infinite 1.3s;
+}
+
+.animate-float-5 {
+  --rot: -3deg;
+  animation: float-gentle 4.6s ease-in-out infinite 0.7s;
 }
 
 /* 2. Organic Morphing Fluid Blob in Background */
@@ -172,49 +178,67 @@ html {
   }
   33% {
     border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-    transform: scale(1.08) rotate(120deg);
+    transform: scale(1.12) rotate(120deg);
   }
   66% {
     border-radius: 50% 60% 30% 60% / 30% 40% 70% 60%;
-    transform: scale(0.95) rotate(240deg);
+    transform: scale(0.92) rotate(240deg);
   }
 }
 
 .slush-blob {
-  background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #6366f1 100%);
-  animation: morph-blob 12s ease-in-out infinite;
-  filter: blur(40px);
+  background: radial-gradient(circle at center, #38bdf8 0%, #3b82f6 50%, #6366f1 100%);
+  animation: morph-blob 11s ease-in-out infinite;
+  filter: blur(50px);
   opacity: 0.65;
 }
 
-/* 3. Infinite Marquee Banner (Slush Signature) */
-@keyframes marquee-scroll {
+.slush-blob-secondary {
+  background: radial-gradient(circle at center, #bef264 0%, #38bdf8 60%, transparent 80%);
+  animation: morph-blob 14s ease-in-out infinite reverse;
+  filter: blur(60px);
+  opacity: 0.45;
+}
+
+/* 3. Dual Infinite Marquee Ribbons (Slush Signature) */
+@keyframes marquee-scroll-left {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 22s linear infinite;
+  animation: marquee-scroll-left 20s linear infinite;
 }
 
-.animate-marquee:hover {
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-right 22s linear infinite;
+}
+
+.animate-marquee:hover, .animate-marquee-reverse:hover {
   animation-play-state: paused;
 }
 
 /* 4. Pulse Badge Glow */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
   }
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 2s infinite;
+  animation: pulse-glow 2.2s infinite;
 }
 
 /* 5. Shimmer Light Sweep */
@@ -232,8 +256,18 @@ html {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shine 3s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shine 2.8s infinite;
+}
+
+/* 6. Rotating Sparkle Badge */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
 }
 
 /* --------------------------------------------------------------------------
@@ -260,8 +294,8 @@ html {
   position: relative;
   transform-style: preserve-3d;
   transform: rotateY(-16deg) rotateX(6deg);
-  transition: transform 0.25s ease-out;
-  animation: float-gentle 6s ease-in-out infinite;
+  transition: transform 0.22s ease-out;
+  animation: float-gentle 5s ease-in-out infinite;
 }
 
 .book-front {
@@ -330,11 +364,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.22);
   background: #a3e635;
 }
 
-/* Slush grid background */
+/* Slush Grid Background */
 .slush-grid {
   background-size: 32px 32px;
   background-image: 
